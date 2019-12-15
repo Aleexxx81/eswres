@@ -1,0 +1,83 @@
+bodies[0]
+  name = Лиза
+  file = /modsprites/ECFUN/li/li_1_body_pioneer.png
+  emotions[] = /modsprites/ECFUN/li/li_1_normal.png,/modsprites/ECFUN/li/li_1_blink.png,/modsprites/ECFUN/li/li_1_discontent.png,/modsprites/ECFUN/li/li_1_doubt.png,/modsprites/ECFUN/li/li_1_grin.png,/modsprites/ECFUN/li/li_1_laugh.png,/modsprites/ECFUN/li/li_1_shinesmile.png,/modsprites/ECFUN/li/li_1_surprise.png,/modsprites/ECFUN/li/li_1_suspicion.png
+  clothes[]
+  accessories[]
+bodies[1]
+  name = Лиза
+  file = /modsprites/ECFUN/li/li_1_body_sky.png
+  emotions[] = /modsprites/ECFUN/li/li_1_normal.png,/modsprites/ECFUN/li/li_1_blink.png,/modsprites/ECFUN/li/li_1_discontent.png,/modsprites/ECFUN/li/li_1_doubt.png,/modsprites/ECFUN/li/li_1_grin.png,/modsprites/ECFUN/li/li_1_laugh.png,/modsprites/ECFUN/li/li_1_shinesmile.png,/modsprites/ECFUN/li/li_1_surprise.png,/modsprites/ECFUN/li/li_1_suspicion.png
+  clothes[]
+  accessories[]
+  skip = true
+bodies[2]
+  name = Лиза
+  file = /modsprites/ECFUN/li/li_2_body_sky.png
+  emotions[] = /modsprites/ECFUN/li/li_2_smile.png,/modsprites/ECFUN/li/li_2_discontent2.png,/modsprites/ECFUN/li/li_2_mean.png,/modsprites/ECFUN/li/li_2_not_me.png,/modsprites/ECFUN/li/li_2_offense.png,/modsprites/ECFUN/li/li_2_scorn.png,/modsprites/ECFUN/li/li_2_surprise2.png
+  clothes[]
+  accessories[]
+  skip = true
+bodies[3]
+  name = Лиза
+  file = /modsprites/ECFUN/li/li_3_body_sky.png
+  emotions[] = /modsprites/ECFUN/li/li_3_smile2.png,/modsprites/ECFUN/li/li_3_acrimony.png,/modsprites/ECFUN/li/li_3_discontent3.png
+  clothes[]
+  accessories[]
+  skip = true
+bodies[4]
+  name = Лиза
+  file = /modsprites/ECFUN/li/li_4_body_sky.png
+  emotions[] = /modsprites/ECFUN/li/li_4_discontent4.png,/modsprites/ECFUN/li/li_4_angry.png,/modsprites/ECFUN/li/li_4_angry2.png
+  clothes[]
+  accessories[]
+  skip = true
+bodies[5]
+  name = Лиза
+  file = /modsprites/ECFUN/li/li_5_body_sky.png
+  emotions[] = /modsprites/ECFUN/li/li_5_ardor.png,/modsprites/ECFUN/li/li_5_calm.png,/modsprites/ECFUN/li/li_5_desire.png
+  clothes[]
+  accessories[]
+  skip = true
+bodies[6]
+  name = Лиза
+  file = /modsprites/ECFUN/li/li_6_body_sky.png
+  emotions[] = /modsprites/ECFUN/li/li_6_mad.png
+  clothes[]
+  accessories[]
+  skip = true
+bodies[7]
+  name = Лиза
+  file = /modsprites/ECFUN/li/li_7_body_sky.png
+  emotions[] = /modsprites/ECFUN/li/li_7_seduces.png
+  clothes[]
+  accessories[]
+  skip = true
+bodies[8]
+  name = Лиза
+  file = /modsprites/ECFUN/li/li_1_body_dark.png
+  emotions[] = /modsprites/ECFUN/li/li_1_normal.png,/modsprites/ECFUN/li/li_1_blink.png,/modsprites/ECFUN/li/li_1_discontent.png,/modsprites/ECFUN/li/li_1_doubt.png,/modsprites/ECFUN/li/li_1_grin.png,/modsprites/ECFUN/li/li_1_laugh.png,/modsprites/ECFUN/li/li_1_shinesmile.png,/modsprites/ECFUN/li/li_1_surprise.png,/modsprites/ECFUN/li/li_1_suspicion.png
+  clothes[]
+  accessories[]
+  skip = true
+bodies[9]
+  name = Лиза
+  file = /modsprites/ECFUN/li/li_2_body_dark.png
+  emotions[] = /modsprites/ECFUN/li/li_2_smile.png,/modsprites/ECFUN/li/li_2_discontent2.png,/modsprites/ECFUN/li/li_2_mean.png,/modsprites/ECFUN/li/li_2_not_me.png,/modsprites/ECFUN/li/li_2_offense.png,/modsprites/ECFUN/li/li_2_scorn.png,/modsprites/ECFUN/li/li_2_surprise2.png
+  clothes[]
+  accessories[]
+  skip = true
+bodies[10]
+  name = Лиза
+  file = /modsprites/ECFUN/li/li_3_body_dark.png
+  emotions[] = /modsprites/ECFUN/li/li_3_smile2.png,/modsprites/ECFUN/li/li_3_acrimony.png,/modsprites/ECFUN/li/li_3_discontent3.png
+  clothes[]
+  accessories[]
+  skip = true
+bodies[11]
+  name = Лиза
+  file = /modsprites/ECFUN/li/li_4_body_dark.png
+  emotions[] = /modsprites/ECFUN/li/li_4_discontent4.png,/modsprites/ECFUN/li/li_4_angry.png,/modsprites/ECFUN/li/li_4_angry2.png
+  clothes[]
+  accessories[]
+  skip = true

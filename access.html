@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ESO: security</title>
+</head>
+<body>
+	Access key:
+	<input type = "text" id = "inp">
+	<br>
+	<button id = "bt">Send</button>
+
+	<script type="text/javascript">
+		let bt = document.querySelector("#bt");
+		let inp = document.querySelector("#inp");
+		bt.onclick = function () {
+			request('/ewt', inp.value, function (data) {
+				if (data.success)
+					location.href = '/';
+				else
+					document.write('Error 403');
+			});
+		};
+
+		function request(url, sendData, callback) {
+		    let xhr = new XMLHttpRequest();
+		    xhr.onreadystatechange = function () {
+		        if (xhr.readyState == 4 && xhr.status == 200) {
+		            let data;
+		            try {
+		                data = JSON.parse(xhr.responseText);
+		            } catch (e) {
+		                console.error(`error parsing reponse from: ${url}. raw response: ${xhr.responseText}`);
+		                return;
+		            }
+		            console.debug(`successfully loaded ${url}`);
+		            callback(data);
+		        }
+		    }
+		    xhr.onprogress = function () {};
+		    xhr.open('POST', url, true);
+		    xhr.send(sendData);
+		}
+	</script>
+
+</body>
+</html>

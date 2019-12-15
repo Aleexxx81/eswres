@@ -1,0 +1,113 @@
+packs[0]
+  name = Бесконечное лето
+  description = Ванильное "Бесконечное лето"
+  link = https://vk.com/everlasting.summer.official
+  config = es.conf
+  icon = /modsprites/bkrr/icon.png
+  permission = moderator
+packs[1]
+  name = Булки, кефир и рок-н-ролл
+  description = Б у л к и
+  link = https://vk.com/b_k_r_r
+  config = bkrr.conf
+  icon = ...
+
+chars[0]
+  name=Мику
+chars[1]
+  name=Женя
+
+bodies[0]
+  name=Мику
+  file = /sprite/mi/mi_3_body.png
+  emotions[] = /sprite/mi/mi_3_normal.png,/sprite/mi/mi_3_serious.png
+  clothes[] = /sprite/mi/mi_3_pioneer.png,/sprite/mi/mi_3_swim.png
+bodies[1]
+  name=Мику
+  file = /sprite/mi/mi_2_body.png
+  emotions[] = /sprite/mi/mi_2_happy.png,/sprite/mi/mi_2_smile.png
+  clothes[] = /sprite/mi/mi_2_pioneer.png,/sprite/mi/mi_2_swim.png
+bodies[2]
+  name=Женя
+  file = /sprite/mz/mz_1_body.png
+  emotions[] = /sprite/mz/mz_1_normal.png,/sprite/mz/mz_1_bukal.png,/sprite/mz/mz_1_laugh.png
+  clothes[] = /sprite/mz/mz_1_pioneer.png
+bodies[3]
+  name=Женя
+  file=/sprite/mz/mz_2_body.png
+  emotions[] = /sprite/mz/mz_2_angry.png,/sprite/mz/mz_2_rage.png
+  clothes[] = /sprite/mz/mz_2_pioneer.png
+bodies[4]
+  name=Женя
+  file=/sprite/mz/mz_3_body.png
+  emotions[] = /sprite/mz/mz_3_shy.png,/sprite/mz/mz_3_smile.png
+  clothes[] = /sprite/mz/mz_3_pioneer.png
+
+
+nodes[0]
+  code=int_lib
+  data
+    name=Библиотека
+    day=/images/bg/int_library_day.jpg
+    night=/images/bg/int_library_night.jpg
+    sunset=/images/bg/int_library_sunset.jpg
+    ambience_day=
+    ambience_night=
+    music=
+  actions[0]
+    name=Зажечь свет
+    code=come_on_baby_light_my_fire
+    condition=night
+    bg=/images/bg/int_library_night2.jpg
+    music=
+    ambience=
+  actions[1]
+    target=
+    name=Потушить свет
+    code=turn_lights_down
+    condition=come_on_baby_light_my_fire
+    bg=/images/bg/int_library_night.jpg
+    ambience=
+    music=
+  actions[2]
+    name=Выйти из библиотеки
+    target=ext_lib
+nodes[1]
+  code=ext_lib
+  data
+    name=Библиотека (снаружи)
+    day=/images/bg/ext_library_day.jpg
+    night=/images/bg/ext_library_night.jpg
+    sunset=/images/bg/ext_library_sunset.jpg
+    ambience_day=...
+    ambience_night=...
+    music=
+  actions[0]
+    target=int_lib
+    name=Войти в библиотеку
+nodes[2]
+  code=ext_aidpost
+  data
+    name=Медпункт (снаружи)
+    day=/images/bg/ext_aidpost_day.jpg
+    night=/images/bg/ext_aidpost_night.jpg
+    sunset=/images/bg/ext_aidpost_sunset.jpg
+    ambience_day=...
+    ambience_night=...
+    music=
+  actions[0]
+    target=
+    name=
+nodes[3]
+  code=int_aidpost
+  data
+    name=Медпункт
+    day=/images/bg/int_aidpost_day.jpg
+    night=/images/bg/int_aidpost_night.jpg
+    sunset=/images/bg/int_aidpost_sunset.jpg
+    ambience_day=...
+    ambience_night=...
+    music=
+  actions[0]
+    target=
+    name=

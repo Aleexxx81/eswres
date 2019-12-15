@@ -1,0 +1,174 @@
+bodies[0]
+  name = Григорий
+  file = /modsprites/SS/gr/grigory_1.png
+  emotions[] = /modsprites/SS/gr/grigory_idle.png,/modsprites/SS/gr/grigory_moody.png,/modsprites/SS/gr/grigory_smile.png,/modsprites/SS/gr/grigory_surprise.png,/modsprites/SS/gr/grigory_wink.png
+  clothes[]
+  accessories[]
+bodies[1]
+  name = Григорий
+  file = /modsprites/SS/gr/grigory_2.png
+  emotions[] = /modsprites/SS/gr/grigory_idle.png,/modsprites/SS/gr/grigory_moody.png,/modsprites/SS/gr/grigory_smile.png,/modsprites/SS/gr/grigory_surprise.png,/modsprites/SS/gr/grigory_wink.png
+  clothes[]
+  accessories[]
+bodies[2]
+  name = Лео
+  file = /modsprites/SS/leo/leo1.png
+  emotions[] = /modsprites/SS/leo/idle1.png,/modsprites/SS/leo/rast1.png,/modsprites/SS/leo/scared1.png,/modsprites/SS/leo/smile1.png,/modsprites/SS/leo/surp1.png,/modsprites/SS/leo/unsure1.png
+  clothes[]
+  accessories[]
+bodies[3]
+  name = Лео
+  file = /modsprites/SS/leo/leo1h.png
+  emotions[] = /modsprites/SS/leo/idle1.png,/modsprites/SS/leo/rast1.png,/modsprites/SS/leo/scared1.png,/modsprites/SS/leo/smile1.png,/modsprites/SS/leo/surp1.png,/modsprites/SS/leo/unsure1.png
+  clothes[]
+  accessories[]
+bodies[4]
+  name = Лео
+  file = /modsprites/SS/leo/leo2.png
+  emotions[] = /modsprites/SS/leo/idle2.png,/modsprites/SS/leo/scared2.png,/modsprites/SS/leo/smile2.png,/modsprites/SS/leo/surp2.png,/modsprites/SS/leo/unsure2.png
+  clothes[]
+  accessories[]
+bodies[5]
+  name = Лео
+  file = /modsprites/SS/leo/leo2h.png
+  emotions[] = /modsprites/SS/leo/idle2.png,/modsprites/SS/leo/scared2.png,/modsprites/SS/leo/smile2.png,/modsprites/SS/leo/surp2.png,/modsprites/SS/leo/unsure2.png
+  clothes[]
+  accessories[]
+bodies[6]
+  name = Лео
+  file = /modsprites/SS/leo/leo3.png
+  emotions[] = /modsprites/SS/leo/normal3.png,/modsprites/SS/leo/happy3.png,/modsprites/SS/leo/scared3.png,/modsprites/SS/leo/smile3.png
+  clothes[]
+  accessories[]
+bodies[7]
+  name = Лео
+  file = /modsprites/SS/leo/leo3h.png
+  emotions[] = /modsprites/SS/leo/normal3.png,/modsprites/SS/leo/happy3.png,/modsprites/SS/leo/scared3.png,/modsprites/SS/leo/smile3.png
+  clothes[]
+  accessories[]
+bodies[8]
+  name = Лео
+  file = /modsprites/SS/leo/leo4.png
+  emotions[] = /modsprites/SS/leo/normal4.png,/modsprites/SS/leo/rage4.png,/modsprites/SS/leo/sad4.png,/modsprites/SS/leo/smile4.png,/modsprites/SS/leo/sorry4.png
+  clothes[]
+  accessories[]
+bodies[9]
+  name = Лео
+  file = /modsprites/SS/leo/leo4h.png
+  emotions[] = /modsprites/SS/leo/normal4.png,/modsprites/SS/leo/rage4.png,/modsprites/SS/leo/sad4.png,/modsprites/SS/leo/smile4.png,/modsprites/SS/leo/sorry4.png
+  clothes[]
+  accessories[]
+bodies[10]
+  name = Сова
+  file = /modsprites/SS/owl/1_owl_dressed.png
+  emotions[] = /modsprites/SS/owl/1_laugh.png,/modsprites/SS/owl/1_scared.png,/modsprites/SS/owl/1_surprise.png
+  clothes[]
+  accessories[]
+  skip = true
+bodies[11]
+  name = Сова
+  file = /modsprites/SS/owl/2_owl_dressed.png
+  emotions[] = /modsprites/SS/owl/2_guilty.png,/modsprites/SS/owl/2_cry.png,/modsprites/SS/owl/2_cry_2.png,/modsprites/SS/owl/2_guilty_2.png,/modsprites/SS/owl/2_rage.png,/modsprites/SS/owl/2_rage_2.png,/modsprites/SS/owl/2_sad.png,/modsprites/SS/owl/2_sad_2.png,/modsprites/SS/owl/2_shy.png,/modsprites/SS/owl/2_shy_2.png,/modsprites/SS/owl/2_upset.png,/modsprites/SS/owl/2_upset_2.png
+  clothes[]
+  accessories[] = /modsprites/SS/owl/2_persten.png
+  skip = true
+bodies[12]
+  name = Сова
+  file = /modsprites/SS/owl/3_owl_dressed.png
+  emotions[] = /modsprites/SS/owl/3_normal.png,/modsprites/SS/owl/3_smile.png,/modsprites/SS/owl/3_tender.png,/modsprites/SS/owl/3_unsure.png,/modsprites/SS/owl/3_widesmile.png
+  clothes[]
+  accessories[]
+  skip = true
+bodies[13]
+  name = Сова
+  file = /modsprites/SS/owl/1_owl_pioneer.png
+  emotions[] = /modsprites/SS/owl/1_laugh.png,/modsprites/SS/owl/1_scared.png,/modsprites/SS/owl/1_surprise.png
+  clothes[]
+  accessories[]
+bodies[14]
+  name = Сова
+  file = /modsprites/SS/owl/2_owl_pioneer.png
+  emotions[] = /modsprites/SS/owl/2_guilty.png,/modsprites/SS/owl/2_cry.png,/modsprites/SS/owl/2_cry_2.png,/modsprites/SS/owl/2_guilty_2.png,/modsprites/SS/owl/2_rage.png,/modsprites/SS/owl/2_rage_2.png,/modsprites/SS/owl/2_sad.png,/modsprites/SS/owl/2_sad_2.png,/modsprites/SS/owl/2_shy.png,/modsprites/SS/owl/2_shy_2.png,/modsprites/SS/owl/2_upset.png,/modsprites/SS/owl/2_upset_2.png
+  clothes[]
+  accessories[] = /modsprites/SS/owl/2_persten.png
+bodies[15]
+  name = Сова
+  file = /modsprites/SS/owl/3_owl_pioneer.png
+  emotions[] = /modsprites/SS/owl/3_normal.png,/modsprites/SS/owl/3_smile.png,/modsprites/SS/owl/3_tender.png,/modsprites/SS/owl/3_unsure.png,/modsprites/SS/owl/3_widesmile.png
+  clothes[]
+  accessories[]
+bodies[16]
+  name = Сова
+  file = /modsprites/SS/owl/1_owl_skirt.png
+  emotions[] = /modsprites/SS/owl/1_laugh.png,/modsprites/SS/owl/1_scared.png,/modsprites/SS/owl/1_surprise.png
+  clothes[]
+  accessories[]
+  skip = true
+bodies[17]
+  name = Сова
+  file = /modsprites/SS/owl/2_owl_skirt.png
+  emotions[] = /modsprites/SS/owl/2_guilty.png,/modsprites/SS/owl/2_cry.png,/modsprites/SS/owl/2_cry_2.png,/modsprites/SS/owl/2_guilty_2.png,/modsprites/SS/owl/2_rage.png,/modsprites/SS/owl/2_rage_2.png,/modsprites/SS/owl/2_sad.png,/modsprites/SS/owl/2_sad_2.png,/modsprites/SS/owl/2_shy.png,/modsprites/SS/owl/2_shy_2.png,/modsprites/SS/owl/2_upset.png,/modsprites/SS/owl/2_upset_2.png
+  clothes[]
+  accessories[] = /modsprites/SS/owl/2_persten.png
+  skip = true
+bodies[18]
+  name = Сова
+  file = /modsprites/SS/owl/3_owl_skirt.png
+  emotions[] = /modsprites/SS/owl/3_normal.png,/modsprites/SS/owl/3_smile.png,/modsprites/SS/owl/3_tender.png,/modsprites/SS/owl/3_unsure.png,/modsprites/SS/owl/3_widesmile.png
+  clothes[]
+  accessories[]
+  skip = true
+bodies[19]
+  name = Сова
+  file = /modsprites/SS/owl/1_owl_undr.png
+  emotions[] = /modsprites/SS/owl/1_laugh.png,/modsprites/SS/owl/1_scared.png,/modsprites/SS/owl/1_surprise.png
+  clothes[]
+  accessories[]
+  skip = true
+bodies[20]
+  name = Сова
+  file = /modsprites/SS/owl/2_owl_undr.png
+  emotions[] = /modsprites/SS/owl/2_guilty.png,/modsprites/SS/owl/2_cry.png,/modsprites/SS/owl/2_cry_2.png,/modsprites/SS/owl/2_guilty_2.png,/modsprites/SS/owl/2_rage.png,/modsprites/SS/owl/2_rage_2.png,/modsprites/SS/owl/2_sad.png,/modsprites/SS/owl/2_sad_2.png,/modsprites/SS/owl/2_shy.png,/modsprites/SS/owl/2_shy_2.png,/modsprites/SS/owl/2_upset.png,/modsprites/SS/owl/2_upset_2.png
+  clothes[]
+  accessories[] = /modsprites/SS/owl/2_persten.png
+  skip = true
+bodies[21]
+  name = Сова
+  file = /modsprites/SS/owl/3_owl_undr.png
+  emotions[] = /modsprites/SS/owl/3_normal.png,/modsprites/SS/owl/3_smile.png,/modsprites/SS/owl/3_tender.png,/modsprites/SS/owl/3_unsure.png,/modsprites/SS/owl/3_widesmile.png
+  clothes[]
+  accessories[]
+  skip = true
+bodies[22]
+  name = Славя
+  file = /sprites/sl/sl_1_body.png
+  emotions[] = /modsprites/SS/sl/sl_1_awesome.png
+  clothes[]
+  accessories[]
+bodies[23]
+  name = Славя
+  file = /sprites/sl/sl_2_body.png
+  emotions[] = /modsprites/SS/sl/sl_2_smile2.png,/modsprites/SS/sl/sl_2_happy.png,/modsprites/SS/sl/sl_2_laugh.png,/modsprites/SS/sl/sl_2_shy.png
+  clothes[]
+  accessories[]
+  skip = true
+bodies[24]
+  name = Славя
+  file = /sprites/sl/sl_4_body.png
+  emotions[] = /modsprites/SS/sl/sl_4_scared.png
+  clothes[]
+  accessories[]
+bodies[25]
+  name = Толик
+  file = /modsprites/SS/tl/tl_1_pioneer.png
+  emotions[]
+  clothes[]
+  accessories[]
+  skip = true
+bodies[26]
+  name = Толик
+  file = /modsprites/SS/tl/tl_2_pioneer_rage.png
+  emotions[]
+  clothes[]
+  accessories[]
+  skip = true

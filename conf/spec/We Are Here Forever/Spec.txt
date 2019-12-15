@@ -1,0 +1,18 @@
+bodies[0]
+  name = Соня /n
+  file = /modsprites/WAHF/st_1_body.png
+  emotions[] = /modsprites/WAHF/st_1_shocked.png
+  clothes[] = /modsprites/WAHF/st_1_pioneer.png
+  accessories[]
+bodies[1]
+  name = Соня /n
+  file = /modsprites/WAHF/st_2_body.png
+  emotions[] = /modsprites/WAHF/st_2_smile.png,/modsprites/WAHF/st_2_sad.png
+  clothes[] = /modsprites/WAHF/st_2_pioneer.png
+  accessories[]
+bodies[2]
+  name = Соня /n
+  file = /modsprites/WAHF/st_3_body.png
+  emotions[] = /modsprites/WAHF/st_3_normal.png,/modsprites/WAHF/st_3_afraid.png
+  clothes[] = /modsprites/WAHF/st_3_pioneer.png
+  accessories[]

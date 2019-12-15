@@ -1,0 +1,42 @@
+bodies[0]
+  name = Диана
+  file = /modsprites/Diana/di/di_1_body.png
+  emotions[] = /modsprites/Diana/di/di_1_normal.png,/modsprites/Diana/di/di_1_dream.png,/modsprites/Diana/di/di_1_evil_smile.png,/modsprites/Diana/di/di_1_sad.png,/modsprites/Diana/di/di_1_smile.png,/modsprites/Diana/di/di_1_surprise.png
+  clothes[] = /modsprites/Diana/di/di_1_pioneer.png
+  accessories[]
+bodies[1]
+  name = Диана
+  file = /modsprites/Diana/di/di_2_body.png
+  emotions[] = /modsprites/Diana/di/di_2_grin.png,/modsprites/Diana/di/di_2_angry.png,/modsprites/Diana/di/di_2_wink.png,/modsprites/Diana/di/di_2_wink2.png
+  clothes[] = /modsprites/Diana/di/di_2_pioneer.png
+  accessories[]
+bodies[2]
+  name = Диана
+  file = /modsprites/Diana/di/di_3_body.png
+  emotions[] = /modsprites/Diana/di/di_3_giggle2.png,/modsprites/Diana/di/di_3_cry.png,/modsprites/Diana/di/di_3_giggle_shy.png,/modsprites/Diana/di/di_3_giggle1.png,/modsprites/Diana/di/di_3_happy.png,/modsprites/Diana/di/di_3_laugh.png,/modsprites/Diana/di/di_3_laugh_hard.png,/modsprites/Diana/di/di_3_shocked.png,/modsprites/Diana/di/di_3_shocked2.png
+  clothes[] = /modsprites/Diana/di/di_3_pioneer.png
+  accessories[]
+bodies[3]
+  name = Диана
+  file = /modsprites/Diana/di/di_4_body.png
+  emotions[] = /modsprites/Diana/di/di_4_think.png,/modsprites/Diana/di/di_4_think2.png
+  clothes[] = /modsprites/Diana/di/di_4_pioneer.png
+  accessories[]
+bodies[4]
+  name = Славя
+  file = /sprites/sl/sl_3_body.png
+  emotions[] = /modsprites/Diana/sl/sl_3_attention.png,/modsprites/Diana/sl/sl_3_curious.png,/modsprites/Diana/sl/sl_3_wonder.png,/modsprites/Diana/sl/sl_3_wonder_shy.png
+  clothes[]
+  accessories[]
+bodies[5]
+  name = Лена
+  file = /sprites/un/un_1_body.png
+  emotions[]
+  clothes[]
+  accessories[] = /modsprites/Diana/un/un_1_apron.png
+bodies[6]
+  name = Лена
+  file = /sprites/un/un_3_body.png
+  emotions[] = /modsprites/Diana/un/un_3_surp_shy.png,/modsprites/Diana/un/un_3_intent.png,/modsprites/Diana/un/un_3_oops.png,/modsprites/Diana/un/un_3_oops_down.png
+  clothes[]
+  accessories[] = /modsprites/Diana/un/un_3_apron.png

@@ -1,0 +1,782 @@
+:root {
+    --gridPoseHeight: 320px;
+    --gridPoseWidth: 216px;
+}
+
+.gridWrapper {
+    display: grid;
+    overflow-y: scroll;
+    overflow-x:hidden
+}
+
+.spritepackSwitchButton {
+    position: absolute;
+    top: 50%;
+    width: 116;
+    height: 84;
+    z-index: 1;
+}
+
+@font-face {
+    font-family: Gothic;
+    src: url('fonts/gothic.TTF');
+}
+
+* {
+	padding: 0px;
+	margin: 0px;
+	cursor: url(images/misc/mouse/1.png), default !important;
+}
+
+body {
+	overflow: hidden;
+	background-image: url("images/base/bg_empty.png");
+}
+
+.16x9 {
+	background-color: #000;
+	overflow: hidden;
+	width: 1920px;
+	height: 1080px;
+}
+
+.fullsize {
+	width: 100%;
+	height: 100%;
+}
+
+.layer {
+	position: absolute;
+    width: 100%;
+	height: 100%;
+}
+
+.background {
+	width: 100%;
+    height: 100%;
+    margin: auto;
+	background-size: cover;
+	background-position: center;
+	overflow: hidden;
+}
+
+.character {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+    background-size: auto 100%;
+    background-position: 50% 100%;
+    background-repeat: no-repeat;
+	transition: transform 1s ease-in-out;
+}
+
+.screens {
+	position: absolute;
+    width: 100%;
+    height: 100%;
+	top: 0;
+    left: 0;
+}
+
+body[screenmode="fixed16x9"] .background, body[screenmode="fixed16x9"] .screens {
+	position: absolute;
+	width: 1920px;
+    height: 1080px;
+	top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -540px, 0);
+}
+
+.move-screen {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+}
+
+.chat {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+}
+
+.chat .messages {
+	position: absolute;
+    bottom: 32px;
+    width: 100%;
+}
+
+.chat .messages .msg {
+	font-size: 28px;
+    font-family: Calibri;
+    line-height: 28px;
+    display: block;
+    padding: 0 14px;
+    width: fit-content;
+    color: #ffdd7d;
+    text-shadow: 2px 2px 0 #000;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%);
+	animation-name: hidetext;
+	animation-delay: 30s;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+.chat .input {
+	background-color: rgba(0,0,0,0.75);
+    height: 32px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.chat .title {
+	font-family: Calibri;
+    font-size: 28px;
+    line-height: 32px;
+    color: #ffdd7d;
+    text-shadow: 2px 2px 0 #000;
+    padding: 0 0 0 14px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.chat .input input {
+	width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    background-color: rgba(0,0,0,0);
+    border: 0;
+    padding: 0 5px;
+    color: #ffdd7d;
+    text-shadow: 2px 2px 0 #000;
+    font-size: 28px;
+    font-family: Calibri;
+}
+
+.chat .input input::-webkit-input-placeholder {
+	color: #ffdd7d;
+	opacity: 0.25;
+}
+.chat .input input:-ms-input-placeholder {
+	color: #ffdd7d;
+	opacity: 0.25;
+}
+.chat .input input::-moz-placeholder {
+	color: #ffdd7d;
+	opacity: 0.25;
+}
+.chat .input input:-moz-placeholder {
+	color: #ffdd7d;
+	opacity: 0.25;
+}
+
+/*.context-menu {
+	max-width: 768px;
+    height: auto;
+    padding: 10px 20px;
+    background-color: rgba(0,0,0,0.75);
+    box-shadow: 0 0 20px 20px rgba(0,0,0,0.75);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 24px;
+    line-height: 28px;
+    color: rgba(255,221,125,1);
+    font-family: Calibri;
+    text-shadow: 2px 2px 0px #000;
+    transform: translate3d(-50%, -50%, 0);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+.context-menu .button {
+	display: inline-block;
+    width: 192px;
+    height: 192px;
+    text-align: center;
+}
+.context-menu .title {
+	font-size: 24px;
+    line-height: 28px;
+    color: rgba(255,221,125,1);
+    font-family: Calibri;
+    text-shadow: 2px 2px 0px #000;
+}*/
+
+.context-menu {
+    /*height: 100%;*/
+    /*height: auto;*/
+    width: 450px;
+    padding: 10px 20px;
+    background-color: rgba(0,0,0,0.75);
+    box-shadow: 0 0 20px 20px rgba(0,0,0,0.75);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 1.5em;
+    line-height: 2em;
+    color: rgba(255,221,125,1);
+    font-family: Calibri;
+    text-shadow: 2px 2px 0px #000;
+    transform: translate3d(-50%, -50%, 0);
+}
+.context-menu .button {
+    left: 50%;
+	display: block;
+    padding-left: 48px;
+    /*padding-right: 4px;*/
+    background-repeat: no-repeat;
+    background-size: auto 40px;
+    background-position: 4px 50%;
+	transition: all 0.1s;
+}
+
+.context-menu .button:hover {
+	background-size: auto 48px;
+    background-position: 0px 50%;
+	filter: brightness(120%);
+	padding-left: 52px;
+    padding-right: 0px;
+}
+
+.map {
+    position: absolute;
+	left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-image: url(images/gui/map1.jpg);
+    background-size: 100% 100%;
+}
+
+.map .mappoint {
+	position: absolute;
+    width: 64px;
+    height: 64px;
+    background-color: rgba(255, 0, 0, 0);
+    border: solid rgba(0,0,0,0) 2px;
+    box-shadow: 0px 0px 10px rgba(255,0,0,0);
+    border-radius: 8px;
+    transition: all 0.1s;
+}
+
+.map .mappoint:hover {
+    background-color: rgba(255, 0, 0, 0.1);
+    border: solid #ff0000 2px;
+    box-shadow: 0px 0px 10px rgba(255,0,0,1);
+}
+
+.map .mappoint .point {
+    width: 32px;
+    height: 32px;
+	margin: auto;
+	margin-top: -30px;
+    background-color: #F00;
+    box-shadow: inset 0px 0px 0px 2px #FFF;
+    border-radius: 50%/2% 50% 50% 50%;
+    transform: rotate(215deg);
+}
+
+.map .mappoint .point::before{
+    display: block;
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    content: attr(online);
+    transform: rotate(-225deg);
+    font-size: 18px;
+    line-height: 32px;
+    text-align: center;
+    color: #FFF;
+    font-family: Calibri;
+    font-weight: 600;
+    text-shadow: 2px 2px 0px #F00;
+}
+
+.pose-selector {
+    width: 70%;
+    height: 400px;
+    background-color: rgba(0,0,0,0.75);
+    box-shadow: 0 0 20px 20px rgba(0,0,0,0.75);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: auto;
+    transform: translate3d(-50%, -50%, 0);
+}
+
+.startscreen .pose-selector {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.75);
+    box-shadow: 0 0 20px 20px rgba(0,0,0,0.75);
+    position: absolute;
+    margin: auto;
+}
+
+.char-grid {
+    /*position: center;*/
+    left: 50%;
+    display: grid;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    /*grid-template-columns: repeat(auto-fit, minmax(--gridPoseWidth 1fr));*/
+    grid-template-columns: repeat(auto-fit, minmax(216px, 1fr));
+}
+
+.pose-selector::-webkit-scrollbar {
+    display: none;
+}
+
+.pose-selector .pose {
+    width: var(--gridPoseWidth);
+    height: var(--gridPoseHeight);
+    background-size: auto 100%;
+    background-position: 50% 0%;
+    display: inline-block;
+	filter: brightness(50%);
+	transition: filter 0.1s;
+    /*margin: 20px;*/
+    margin: auto;
+}
+
+.pose-selector .pose:hover {
+	filter: brightness(100%);
+}
+
+.character-editor {
+	width: 100%;
+    height: 100%;
+    background-image: url(images/gui/settings/history_bg.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+.character-editor .pose-selector {
+	background-color: unset;
+    box-shadow: unset;
+}
+
+.character-editor .settings_title {
+	position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 93px;
+    font-size: 60px;
+    line-height: 60px;
+    letter-spacing: 2.6px;
+    font-family: Gothic;
+    color: #FFF;
+}
+
+.character-editor .settings_title img {
+    margin: 0 20px;
+    transform: translateY(5px);
+}
+
+.character-editor .settings_link {
+	position: absolute;
+    font-size: 3.5em;
+    line-height: 30px;
+    letter-spacing: 2.6px;
+    color: #909ca3;
+    font-family: Gothic;
+    user-select: none;
+}
+
+.character-editor .link_lb {
+	bottom: 50px;
+    left: 50px;
+}
+
+.character-editor .link_rb {
+	bottom: 50px;
+    right: 50px;
+}
+
+.character-editor .settings_link:hover {
+    color: #ffffff;
+}
+
+.character-editor .charbg {
+	position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+	background-position: 50% 0;
+    transform: translateX(-30%);
+}
+
+.pose-selector-mini {
+    width: max-content;
+    max-width: 100%;
+    height: unset;
+    text-align: center;
+}
+
+.pose-selector-mini .pose {
+    width: 128px;
+    height: 180px;
+}
+
+.pose-selector .pose .face {
+    width: 48px;
+	height: 48px;
+    max-height: 60px;
+    background-size: auto 600%;
+    opacity: 0;
+    transition: opacity 0.1s;
+	transition: opacity 0.1s;
+}
+
+.pose-selector .pose:hover .face {
+	opacity: 0.75;
+}
+
+.pose-selector .pose .face:hover {
+	opacity: 1;
+}
+
+.pose-selector .title {
+	/*background-image: url(online/icons/pose.png);*/
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    padding-left: 32px;
+    font-family: Calibri;
+    width: 300px;
+    font-size: 28px;
+    line-height: 32px;
+    height: 32px;
+    color: #ffdd7d;
+    text-align: left;
+    text-shadow: 2px 2px 0 #000;
+    margin-top: 16px;
+}
+
+.pose-selector input {
+	display: block;
+    width: 500px;
+    height: 40px;
+    background-color: rgba(0,0,0,0);
+    border: 0;
+    text-align: center;
+    color: #ffdd7d;
+    text-shadow: 2px 2px 0 #000;
+    font-size: 35px;
+    font-family: Calibri;
+}
+
+.pose-selector .inputfield {
+	background-color: rgba(0, 0, 0, 0.5);
+    border: 1px solid white;
+    width: 300px;
+}
+
+.pose-selector input::-webkit-input-placeholder {
+	color: #ffdd7d;
+	opacity: 0.25;
+}
+.pose-selector input:-ms-input-placeholder {
+	color: #ffdd7d;
+	opacity: 0.25;
+}
+.pose-selector input::-moz-placeholder {
+	color: #ffdd7d;
+	opacity: 0.25;
+}
+.pose-selector input:-moz-placeholder {
+	color: #ffdd7d;
+	opacity: 0.25;
+}
+
+.pose-selector .title span {
+	position: absolute;
+}
+
+.pose-selector .title input {
+	width: 300px;
+    height: 32px;
+    opacity: 0;
+    position: absolute;
+}
+
+#notify {
+	max-width: 768px;
+    height: auto;
+    padding: 10px 20px;
+    background-color: rgba(0,0,0,0.75);
+    box-shadow: 0 0 20px 20px rgba(0,0,0,0.75);
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    font-size: 28px;
+    line-height: 28px;
+    color: rgba(255,221,125,1);
+    font-family: Calibri;
+    text-shadow: 2px 2px 0px #000;
+	animation-name: hide;
+    animation-delay: 10s;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+.fade {
+	position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+	animation-name: show;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+.fadein {
+	animation-name: hide;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+.fadeout {
+	animation-name: show;
+    animation-duration: 0.5s;
+	transition: unset !important;
+}
+
+@keyframes show {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+@keyframes hide {
+    0% {opacity: 1;}
+    100% {opacity: 0;}
+}
+@keyframes hidetext {
+    0% {transform:translateX(0px); opacity: 1;}
+    100% {transform:translateX(-100%); opacity: 0;}
+}
+@keyframes redAlert {
+    0% {background-color: rgba(255,0,0,1);}
+    100% {background-color: rgba(255,0,0,0);}
+}
+
+.brightness10 .character {
+    filter: brightness(10%);
+}
+.brightness20 .character {
+    filter: brightness(20%);
+}
+.brightness30 .character {
+    filter: brightness(30%);
+}
+.brightness40 .character {
+    filter: brightness(40%);
+}
+.brightness50 .character {
+    filter: brightness(50%);
+}
+.brightness60 .character {
+    filter: brightness(60%);
+}
+.brightness70 .character {
+    filter: brightness(70%);
+}
+.brightness80 .character {
+    filter: brightness(80%);
+}
+.brightness90 .character {
+    filter: brightness(90%);
+}
+.brightness100 .character {
+    filter: brightness(100%);
+}
+
+.brightness10 .glow {
+    filter: brightness(20%) drop-shadow(0px 0px 10px #FFF);
+}
+.brightness20 .glow {
+    filter: brightness(30%) drop-shadow(0px 0px 10px #FFF);
+}
+.brightness30 .glow {
+    filter: brightness(40%) drop-shadow(0px 0px 10px #FFF);
+}
+.brightness40 .glow {
+    filter: brightness(50%) drop-shadow(0px 0px 10px #FFF);
+}
+.brightness50 .glow {
+    filter: brightness(60%) drop-shadow(0px 0px 10px #FFF);
+}
+.brightness60 .glow {
+    filter: brightness(70%) drop-shadow(0px 0px 10px #FFF);
+}
+.brightness70 .glow {
+    filter: brightness(80%) drop-shadow(0px 0px 10px #FFF);
+}
+.brightness80 .glow {
+    filter: brightness(90%) drop-shadow(0px 0px 10px #FFF);
+}
+.brightness90 .glow {
+    filter: brightness(100%) drop-shadow(0px 0px 10px #FFF);
+}
+.brightness100 .glow {
+    filter: brightness(110%) drop-shadow(0px 0px 10px #FFF);
+}
+.glow {
+    filter: brightness(110%) drop-shadow(0px 0px 10px #FFF);
+}
+
+.context-menu .title {
+    display: block;
+    width: 400px;
+    text-align: center;
+    background-repeat: no-repeat;
+    background-size: auto 40px;
+    background-position: 4px 50%;
+}
+
+.context-menu .radio {
+    display: inline-block;
+    text-align: center;
+    width: 50%;
+    background-repeat: no-repeat;
+    background-size: auto 40px;
+    background-position: 4px 50%;
+    transition: all 0.1s;
+}
+
+.context-menu .radio:hover {
+    transform: scale(1.1);
+}
+
+.context-menu .checked {
+    color: #92ff00;
+    transform: scale(1.1);
+}
+
+.context-menu .hbar {
+	-webkit-appearance: none;
+	display: block;
+	background: linear-gradient(0deg, rgba(100,165,68,1) 0%, rgba(191,238,128,1) 100%), linear-gradient(0deg, rgba(207,153,101,1) 0%, rgba(157,105,69,1) 100%);
+	background-size: 10% 100%, 100% 100%;
+	background-repeat: no-repeat;
+	width: 250px;
+	float: right;
+	height: 24px;
+	transform: translateY(5px);
+	margin-top: 10px;
+}
+
+.context-menu .help {
+	width: 140px;
+	display: inline-block;
+	text-align: right;
+}
+
+.context-menu .hbar::-webkit-slider-thumb{
+    -webkit-appearance: none;
+    background-image: url(images/gui/settings/htumb.png);
+    background-size: 100%;
+    width: 24px;
+    height: 24px;
+    border-radius: 0px;
+}
+
+.context-menu .hbar::-moz-range-thumb{
+    background-image: url(images/gui/settings/htumb.png);
+    background-size: 100%;
+    width: 24px;
+    height: 24px;
+	border: 0;
+    border-radius: 0px;
+}
+
+.spritepacks {
+    background-image: url(images/gui/save_load/save_bg.jpg);
+}
+
+.spritepacks .pack {
+    text-align: left;
+    display: inline-block;
+    width: 380px;
+    height: 140px;
+    transition: all 0.1s;
+}
+
+.spritepacks .pack img {
+    position: absolute;
+    display: inline-block;
+    width: 128px;
+    height: 128px;
+    margin: 6px;
+}
+
+.spritepacks .pack .desc {
+    display: inline-block;
+    font-family: Calibri;
+    font-size: 25px;
+    line-height: 26px;
+    position: absolute;
+    margin-left: 140px;
+    margin-top: 6px;
+    width: 240px;
+    height: 32px;
+    color: #ffdd7d;
+    text-align: left;
+    text-shadow: 2px 2px 0 #000;
+}
+
+.spritepacks .pack .desc .steam {
+    display: block;
+    padding-left: 26px;
+    height: 25px;
+    color: #ffdd7d;
+    background-image: url('online/icons/steam.png');
+    background-size: 20px;
+    background-position: 3px 3px;
+    background-repeat: no-repeat;
+}
+
+.spritepacks .pack .desc .vk {
+    display: block;
+    padding-left: 26px;
+    height: 25px;
+    color: #ffdd7d;
+    background-image: url('online/icons/vk.png');
+    background-size: 20px;
+    background-position: 3px 3px;
+    background-repeat: no-repeat;
+}
+
+.spritepacks .pack .desc .steam:hover, .spritepacks .pack .desc .vk:hover {
+    filter: brightness(1.3);
+}
+
+.spritepacks .pack .mod_thumbnail {
+    position: absolute;
+    width: 380px;
+    height: 140px;
+    background-image: url('online/gui/mod_frame.png');
+}
+
+.spritepacks .pack .switch {
+    display: inline-block;
+    font-family: Calibri;
+    font-size: 25px;
+    line-height: 26px;
+    position: absolute;
+    width: 370px;
+    margin-top: 108px;
+    text-align: right;
+    height: 32px;
+    color: #ffdd7d;
+    text-align: right;
+    text-shadow: 2px 2px 0 #000;
+}

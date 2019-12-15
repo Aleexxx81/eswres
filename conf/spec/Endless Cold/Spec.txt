@@ -1,0 +1,42 @@
+bodies[0]
+  name = Ольга Дмитриевна
+  file = /sprites/mt/mt_1_body.png
+  emotions[] = /modsprites/EC/mt/mt_1_angry2.png
+  clothes[]
+  accessories[]
+bodies[1]
+  name = Ольга Дмитриевна
+  file = /sprites/mt/mt_3_body.png
+  emotions[] = /modsprites/EC/mt/mt_3_tender.png,/modsprites/EC/mt/mt_3_feared.png,/modsprites/EC/mt/mt_3_scared2.png,/modsprites/EC/mt/mt_3_scared3.png,/modsprites/EC/mt/mt_3_shy.png
+  clothes[]
+  accessories[]
+bodies[2]
+  name = Женя
+  file = /sprites/mz/mz_3_body.png
+  emotions[] = /modsprites/EC/mz/mz_3_scared.png
+  clothes[]
+  accessories[]
+bodies[3]
+  name = Славя
+  file = /sprites/sl/sl_1_body.png
+  emotions[] = /modsprites/EC/sl/sl_1_involve.png
+  clothes[]
+  accessories[]
+bodies[4]
+  name = Славя
+  file = /sprites/sl/sl_3_body.png
+  emotions[] = /modsprites/EC/sl/sl_3_obsessed.png
+  clothes[]
+  accessories[]
+bodies[5]
+  name = Славя
+  file = /sprites/sl/sl_4_body.png
+  emotions[] = /modsprites/EC/sl/sl_4_cry2.png
+  clothes[]
+  accessories[]
+bodies[6]
+  name = Соня
+  file = /modsprites/EC/so/so_1_body.png
+  emotions[] = /modsprites/EC/so/so_1_acrimony.png,/modsprites/EC/so/so_1_distraction.png,/modsprites/EC/so/so_1_evil.png,/modsprites/EC/so/so_1_happy.png,/modsprites/EC/so/so_1_puzzled.png,/modsprites/EC/so/so_1_sad.png,/modsprites/EC/so/so_1_shy.png,/modsprites/EC/so/so_1_smile.png,/modsprites/EC/so/so_1_stand.png
+  clothes[]
+  accessories[]
