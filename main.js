@@ -1,4 +1,4 @@
-// (function a () {
+(function a () {
 let config = {
     'defaultBackground': 'images/gui/settings/history_bg.jpg',
     'host': 'localhost:3030',
@@ -1683,4 +1683,4 @@ function updateLs () {
     lsSet('player', player);
 }
 
-// }());
+}());
