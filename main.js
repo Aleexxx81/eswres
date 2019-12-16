@@ -38,6 +38,9 @@ const maplocs = {
     }
 };
 
+let mapGroups = {};
+let nodeLinks = {};
+
 let tempGlobalTimeCode;
 
 // loaded server configuration
@@ -169,6 +172,7 @@ function initDoc () {
     parseSpritepacks(serverSpritepacks);
     parseCharactersConfig(serverCharsConfig);
     parseSpriteConfig(serverSpritesConfig);
+    parseNodesConfig(serverNodesConfig);
 
     // baseDoc = new BaseDocument();
     menu = new Menu();
@@ -277,7 +281,9 @@ function parseServerMessage (msg) {
         }
     }
 
-    l(obj);
+    // помянем Красного...
+    // l(obj);
+
     // @TODO you know what to do
     if (obj.data)
         obj.reason = 'mapData';
@@ -364,6 +370,19 @@ function charByName (name, spritepack) {
     }
 
     return null;
+}
+
+function parseNodesConfig (config) {
+    let list = config.nodes;
+    for (let i = 0; i < list.length; i++) {
+        let node = list[i];
+        nodeLinks[node.code] = node;
+        if (!node.group)
+            continue;
+        if (!mapGroups[node.group])
+            mapGroups[node.group] = [];
+        mapGroups[node.group].push(node.code);
+    }
 }
 
 function parseSpritepacks (packsArray) {
@@ -499,6 +518,8 @@ class Player {
             fadeIn(this.domSprite.body);
             this.domSprite = null;
         }
+        else
+            dbg(`sprite ${this.id}:${this.name} already removed`);
     }
 
     updateSprite (sprite) {
@@ -779,6 +800,9 @@ class Chat {
             raw += ` <font color = ${config.specialMessageColor}>` + message.slice(4) + '</font>';
         else if (message.startsWith('*') && message.endsWith('*'))
             raw += ` <font color = ${config.specialMessageColor}>` + message.slice(1, message.length - 1) + '</font>';
+        else if (message.startsWith('\\\\')) {
+            raw = font(sender.color, sender.name) + ': ' + font('#ffffff', '((') + message.slice(2) + font('#ffffff', '))');
+        }
         else
             raw += ': ' + message;
         
@@ -815,32 +839,6 @@ class CharacterChooser {
         // title.className = 'settings_title';
         // title.innerHTML = 'НАСТРОЙКА ПЕРСОНАЖА';
         // title.innerHTML = '<img src="images/gui/settings/star.png">НАСТРОЙКА ПЕРСОНАЖА<img src="images/gui/settings/star.png">';
-
-        /*let bleft, bright;
-        bleft = appendDiv(this.elem, 'button');
-        bright = appendDiv(this.elem, 'button');
-
-        bleft.className = bright.className = 'spritepackSwitchButton';
-        bleft.style.left = bright.style.right = '10px';
-        bleft.style.backgroundImage = cssUrl('images/gui/backward.png');
-        bright.style.backgroundImage = cssUrl('images/gui/forward.png');
-
-        
-        bleft.onclick = function () {
-            let cspr = characterChooser.cspritepack;
-            cspr = cspr == 0 ? serverSpritepacksConfig.packs.length - 1 : cspr - 1;
-            l('moved to left:' + cspr);
-            characterChooser.cspritepack = cspr;
-            characterChooser.spritepackSelector(serverSpritepacksConfig.packs[cspr].name);
-        };
-
-        bright.onclick = function () {
-            let cspr = characterChooser.cspritepack;
-            cspr = cspr == serverSpritepacksConfig.packs.length - 1 ? 0 : cspr + 1;
-            l('moved to right:' + cspr);
-            characterChooser.cspritepack = cspr;
-            characterChooser.spritepackSelector(serverSpritepacksConfig.packs[cspr].name);
-        };*/
 
         this.spritepackSelector(serverSpritepacksConfig.packs[0].name);
     }
@@ -986,22 +984,35 @@ class Map {
     parseData (data) {
         let append = this.elem;
         let scale = scales.mapPointScale;
+        let res = {};
         for (let name in data) {
+            let group;
+            if (!(group = nodeLinks[name].group))
+                continue;
+            if (!res[group])
+                res[group] = 0;
+            res[group] += data[name];
+        }
+
+        l(res);
+
+        for (let name in res) {
             let loc = maplocs.get(name);
             if (!loc)
                 continue;
+
+            let count = res[name];
             let zone = appendDiv(append);
-            let count = data[name];
             zone.className = "mappoint";
             zone.style.left = loc[0] * scale;
             zone.style.top = loc[1] * scale;
             zone.style.width = loc[2] * scale;
             zone.style.height = loc[3] * scale;
             zone.style.transform = "rotate(" + loc[4] + "deg)";
+
             zone.onclick = function () {
                 dbg(`loading ${name} node`);
                 sendChangeNode(name);
-                lsSet('location', name, true);
             };
 
             let point = appendDiv(zone);
@@ -1015,6 +1026,10 @@ class Map {
             }
         }
     }
+
+    /*makeMapPoint (data, settings) {
+
+    }*/
 }
 
 let menuData = {
@@ -1035,8 +1050,12 @@ let menuData = {
     },
     'dress': {
         'icon': 'images/gui/icon/clothes.png',
-        'title': 'Стать модным',
-        'action': function() {
+        'title': 'Переодеться (модно)',
+        'condition': function () {
+            const list = ['int_house_of_sam', 'int_house_of_un', 'int_house_of_mt', 'int_house_of_sl', 'int_house_of_dv', 'ext_beach', 'int_catacombs_living'];
+            return list.indexOf(node.code) >= 0
+        },
+        'action': function () {
             baseDoc.clothSelector();
         }
     },
@@ -1082,6 +1101,9 @@ class Menu {
             let obj = menuData[i];
             if (obj.hidden)
                 continue;
+            if (obj.condition && !obj.condition())
+                continue;
+
             let button = appendDiv(this.menu);
 
             button.className = 'button';
@@ -1263,7 +1285,7 @@ class BaseDocument {
                     player.sprite.cloth = body.clothIds[j];
                     player.sprite.emotion = body.emotionIds[0];
                     // @TODO think about it
-                    player.sprite.accessory = 0;
+                    // player.sprite.accessory = 0;
                     sendSpriteUpdate(player.sprite);
                     removeElem(selector);
                 }
@@ -1272,8 +1294,10 @@ class BaseDocument {
             break;
         }
 
-        if (empty)
+        if (empty) {
+            notify('Для этого персонажа пока нет одежды');
             removeElem(selector);
+        }
     }
 
     moveScreen () {
@@ -1340,6 +1364,7 @@ function sendPlayer () {
 }
 
 function sendChangeNode (code) {
+    lsSet('location', code, true);
     baseDoc.fade = appendDiv(document.body);
     baseDoc.fade.className = 'fade';
     setTimeout(_sendChangeNode, 500, code);
@@ -1535,6 +1560,13 @@ function parseCommand (msg) {
         else
             player.mod = true;
     }
+    else if (msg.startsWith('/id')) {
+        notify(`ID=${player.id}`);
+    }
+    else if (msg.startsWith('/list')) {
+        for (let n in node.users)
+            chat.printMessage(node.users[n].id, '**');
+    }
 }
 
 function windowResize() {
@@ -1617,6 +1649,10 @@ function play (channel, src) {
     }
 }
 
+function font (color, content) {
+    return `<font color=${color}>${content}</font>`;
+}
+
 function fadeIn(elem){
     if(elem != null && elem.parentNode != null) {
         elem.className = elem.className+" fadein";
@@ -1646,3 +1682,5 @@ function lsSet (key, obj, nojson = false) {
 function updateLs () {
     lsSet('player', player);
 }
+
+// }());
