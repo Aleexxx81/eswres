@@ -1,6 +1,6 @@
 bodies[0]
   name = Виола
-  file = /modsprites/cs/cs_1_body.png
+  file = /modsprites/BKRR/cs/cs_1_body.png
   emotions[] = /modsprites/BKRR/cs/cs_1_sad2.png
   clothes[] = /modsprites/BKRR/cs/cs_1_civil.png,/modsprites/BKRR/cs/cs_1_civil2.png,/modsprites/BKRR/cs/cs_1_dress.png,/modsprites/BKRR/cs/cs_1_panties.png,/modsprites/BKRR/cs/cs_1_swim.png
   accessories[]
@@ -306,7 +306,7 @@ bodies[47]
 bodies[48]
   name = Юля
   file = /sprites/uv/uv_1_body.png
-  emotions[] = /modsprites/BKRR/uv/uv_1_pidontlike.png,/modsprites/BKRR/uv/uv_pisad.png,/modsprites/BKRR/uv/uv_1_pirage.png,/modsprites/BKRR/uv/uv_1_pishocked.png
+  emotions[] = /modsprites/BKRR/uv/uv_1_pidontlike.png,/modsprites/BKRR/uv/uv_1_pisad.png,/modsprites/BKRR/uv/uv_1_pirage.png,/modsprites/BKRR/uv/uv_1_pishocked.png
   clothes[] = /modsprites/BKRR/uv/uv_1_pibody.png
   accessories[] = /modsprites/BKRR/uv/uv_1_pan.png
 bodies[49]
