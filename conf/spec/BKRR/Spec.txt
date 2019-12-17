@@ -255,13 +255,13 @@ bodies[39]
   accessories[]
 bodies[40]
   name = Трук
-  file = /modsprites/box.png
+  file = /modsprites/boxes/boxTruk1.png
   emotions[] = /modsprites/BKRR/tr/tr_1_normal.png,/modsprites/BKRR/tr/tr_1_laugh.png,/modsprites/BKRR/tr/tr_1_sad.png,/modsprites/BKRR/tr/tr_1_smile.png,/modsprites/BKRR/tr/tr_1_surp.png,/modsprites/BKRR/tr/tr_1_upset.png
   clothes[] = /modsprites/BKRR/tr/tr_1_pioneer.png,/modsprites/BKRR/tr/tr_1_cas.png
   accessories[]
 bodies[41]
   name = Трук
-  file = /modsprites/box2.png
+  file = /modsprites/boxes/boxTruk2.png
   emotions[] = /modsprites/BKRR/tr/tr_2_normal2.png,/modsprites/BKRR/tr/tr_2_laugh2.png,/modsprites/BKRR/tr/tr_2_sad2.png,/modsprites/BKRR/tr/tr_2_smile2.png,/modsprites/BKRR/tr/tr_2_surp2.png,/modsprites/BKRR/tr/tr_2_upset2.png
   clothes[] = /modsprites/BKRR/tr/tr_2_pioneer.png,/modsprites/BKRR/tr/tr_2_cas.png
   accessories[]

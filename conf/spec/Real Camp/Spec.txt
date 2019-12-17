@@ -13,37 +13,37 @@ bodies[1]
 bodies[2]
   name = Надя
   file = /modsprites/RC/hp/rc_hp_normal_pioneer.png
-  emotions[] = /modsprites/RC/hp/rc_hp_angry_pioneer.png,/modsprites/RC/hp/rc_hp_cry_pioneer.png,/modsprites/RC/hp/rc_hp_happy_pioneer.png,/modsprites/RC/hp/rc_hp_laugh_pioneer.png,/modsprites/RC/hp/rc_hp_shy_pioneer.png,/modsprites/RC/hp/rc_hp_smile_pioneer.png,/modsprites/RC/hp/rc_hp_sulked_pioneer.png,/modsprites/RC/hp/rc_hp_surprise_pioneer.png
+  emotions[] = /modsprites/RC/hp/rc_hp_angry_pioneer.png,/modsprites/RC/hp/rc_hp_cry_pioneer.png,/modsprites/RC/hp/rc_hp_happy_pioneer.png,/modsprites/RC/hp/rc_hp_laugh_pioneer.png,/modsprites/RC/hp/rc_hp_shy_pioneer.png,/modsprites/RC/hp/rc_hp_smile_pioneer.png,/modsprites/RC/hp/rc_hp_sulked_pioneer.png,/modsprites/RC/hp/rc_hp_surprise_pioneer.png,/modsprites/RC/hp/rc_hp_normal_pioneer.png
   clothes[]
   accessories[]
 bodies[3]
   name = Надя
   file = /modsprites/RC/hp/rc_hp_normal_pioneer_hand.png
-  emotions[] = /modsprites/RC/hp/rc_hp_angry_pioneer_hand.png,/modsprites/RC/hp/rc_hp_cry_pioneer_hand.png,/modsprites/RC/hp/rc_hp_happy_pioneer_hand.png,/modsprites/RC/hp/rc_hp_laugh_pioneer_hand.png,/modsprites/RC/hp/rc_hp_shy_pioneer_hand.png,/modsprites/RC/hp/rc_hp_smile_pioneer_hand.png,/modsprites/RC/hp/rc_hp_sulked_pioneer_hand.png,/modsprites/RC/hp/rc_hp_surprise_pioneer_hand.png
+  emotions[] = /modsprites/RC/hp/rc_hp_angry_pioneer_hand.png,/modsprites/RC/hp/rc_hp_normal_pioneer_hand.png,/modsprites/RC/hp/rc_hp_cry_pioneer_hand.png,/modsprites/RC/hp/rc_hp_happy_pioneer_hand.png,/modsprites/RC/hp/rc_hp_laugh_pioneer_hand.png,/modsprites/RC/hp/rc_hp_shy_pioneer_hand.png,/modsprites/RC/hp/rc_hp_smile_pioneer_hand.png,/modsprites/RC/hp/rc_hp_sulked_pioneer_hand.png,/modsprites/RC/hp/rc_hp_surprise_pioneer_hand.png
   clothes[]
   accessories[]
 bodies[4]
   name = Надя
-  file = /modsprites/RC/hp/rcn18.png
-  emotions[] = /modsprites/RC/hp/rcn1.png,/modsprites/RC/hp/rcn3.png,/modsprites/RC/hp/rcn5.png,/modsprites/RC/hp/rcn7.png,/modsprites/RC/hp/rcn9.png,/modsprites/RC/hp/rcn10.png,/modsprites/RC/hp/rcn14.png,/modsprites/RC/hp/rcn17.png
+  file = /modsprites/RC/hp/rcn13.png
+  emotions[] = /modsprites/RC/hp/rcn2.png,/modsprites/RC/hp/rcn4.png,/modsprites/RC/hp/rcn6.png,/modsprites/RC/hp/rcn8.png,/modsprites/RC/hp/rcn11.png,/modsprites/RC/hp/rcn12.png,/modsprites/RC/hp/rcn13.png,/modsprites/RC/hp/rcn15.png,/modsprites/RC/hp/rcn16.png
   clothes[]
   accessories[]
 bodies[5]
   name = Надя
-  file = /modsprites/RC/hp/rcn13.png
-  emotions[] = /modsprites/RC/hp/rcn2.png,/modsprites/RC/hp/rcn4.png,/modsprites/RC/hp/rcn6.png,/modsprites/RC/hp/rcn8.png,/modsprites/RC/hp/rcn11.png,/modsprites/RC/hp/rcn12.png,/modsprites/RC/hp/rcn15.png,/modsprites/RC/hp/rcn16.png
+  file = /modsprites/RC/hp/rcn18.png
+  emotions[] = /modsprites/RC/hp/rcn1.png,/modsprites/RC/hp/rcn3.png,/modsprites/RC/hp/rcn5.png,/modsprites/RC/hp/rcn7.png,/modsprites/RC/hp/rcn9.png,/modsprites/RC/hp/rcn10.png,/modsprites/RC/hp/rcn14.png,/modsprites/RC/hp/rcn17.png,/modsprites/RC/hp/rcn18.png
   clothes[]
   accessories[]
 bodies[6]
   name = Надя
-  file = /modsprites/RC/hp/rcn27.png
-  emotions[] = /modsprites/RC/hp/rcn20.png,/modsprites/RC/hp/rcn21.png,/modsprites/RC/hp/rcn22.png,/modsprites/RC/hp/rcn23.png,/modsprites/RC/hp/rcn24.png,/modsprites/RC/hp/rcn25.png,/modsprites/RC/hp/rcn26.png,/modsprites/RC/hp/rcn37.png
+  file = /modsprites/RC/hp/rcn35.png
+  emotions[] = /modsprites/RC/hp/rcn29.png,/modsprites/RC/hp/rcn28.png,/modsprites/RC/hp/rcn30.png,/modsprites/RC/hp/rcn31.png,/modsprites/RC/hp/rcn32.png,/modsprites/RC/hp/rcn33.png,/modsprites/RC/hp/rcn34.png,/modsprites/RC/hp/rcn35.png,/modsprites/RC/hp/rcn36.png
   clothes[]
   accessories[]
 bodies[7]
   name = Надя
-  file = /modsprites/RC/hp/rcn35.png
-  emotions[] = /modsprites/RC/hp/rcn28.png,/modsprites/RC/hp/rcn29.png,/modsprites/RC/hp/rcn30.png,/modsprites/RC/hp/rcn31.png,/modsprites/RC/hp/rcn32.png,/modsprites/RC/hp/rcn33.png,/modsprites/RC/hp/rcn34.png,/modsprites/RC/hp/rcn36.png
+  file = /modsprites/RC/hp/rcn27.png
+  emotions[] = /modsprites/RC/hp/rcn25.png,/modsprites/RC/hp/rcn20.png,/modsprites/RC/hp/rcn21.png,/modsprites/RC/hp/rcn22.png,/modsprites/RC/hp/rcn23.png,/modsprites/RC/hp/rcn24.png,/modsprites/RC/hp/rcn25.png,/modsprites/RC/hp/rcn26.png,/modsprites/RC/hp/rcn27.png,/modsprites/RC/hp/rcn37.png
   clothes[]
   accessories[]
 bodies[8]
