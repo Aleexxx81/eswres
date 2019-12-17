@@ -4,6 +4,7 @@ bodies[0]
   emotions[] = /modsprites/BKRR/cs/cs_1_sad2.png
   clothes[] = /modsprites/BKRR/cs/cs_1_civil.png,/modsprites/BKRR/cs/cs_1_civil2.png,/modsprites/BKRR/cs/cs_1_dress.png,/modsprites/BKRR/cs/cs_1_panties.png,/modsprites/BKRR/cs/cs_1_swim.png
   accessories[]
+  skip = true
 bodies[1]
   name = Антон
   file = /modsprites/BKRR/ant/ant_1_body.png

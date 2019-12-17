@@ -140,9 +140,11 @@ bodies[21]
   emotions[]
   clothes[]
   accessories[]
+  skip = true
 bodies[22]
   name = Толик
   file = /modsprites/SS/tl/tl_2_pioneer_rage.png
   emotions[]
   clothes[]
   accessories[]
+  skip = true
