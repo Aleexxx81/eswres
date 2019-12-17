@@ -1,3 +1,12 @@
+/*
+
+Ребята не стоит вскрывать этот код. Вы молодые, хакеры, вам все легко. Это не то.
+Это не Stuxnet и даже не шпионские программы ЦРУ. Сюда лучше не лезть. Серьезно, любой из вас будет жалеть.
+Лучше закройте компилятор и забудьте что там писалось.
+Я вполне понимаю что данным сообщением вызову дополнительный интерес, но хочу сразу предостеречь пытливых - стоп. Остальные просто не найдут.
+
+*/
+
 (function a () {
 let config = {
     'defaultBackground': 'images/gui/settings/history_bg.jpg',
@@ -473,16 +482,16 @@ function parseBody (body, id) {
 }
 
 class Player {
-    id;
-    name;
-    color;
-    character;
-    sprite;
-    position;
-    state; // spectating/playing
-    domSprite; //Sprite instance with DOM links //useless
-    mod;
-    clothIndex; //index of cloth in Body clothes array
+    // id;
+    // name;
+    // color;
+    // character;
+    // sprite;
+    // position;
+    // state; // spectating/playing
+    // domSprite; //Sprite instance with DOM links //useless
+    // mod;
+    // clothIndex; //index of cloth in Body clothes array
 
     constructor(name, color, character, sprite) {
         this.name = name;
@@ -546,7 +555,7 @@ class Player {
 }
 
 class Node {
-    code;
+    /*code;
     dayBg;
     sunsetBg;
     nightBg;
@@ -558,7 +567,7 @@ class Node {
     actionCode;
     users;
 
-    config;
+    config;*/
 
     constructor(code) {
         this.code = code;
@@ -682,10 +691,10 @@ class Node {
 }
 
 class Sprite {
-    body;
+    /*body;
     emotion;
     cloth;
-    accessory;
+    accessory;*/
 
     constructor(body, emotion, cloth) {
         this.body = body;
@@ -736,11 +745,11 @@ class Sprite {
 }
 
 class Chat {
-    elem;
+    /*elem;
     messages;
     input;
     inputbox;
-    chatSrv;
+    chatSrv;*/
 
     constructor () {
         this.init();
@@ -826,9 +835,9 @@ class Chat {
 }
 
 class CharacterChooser {
-    elem;
+    /*elem;
     selector;
-    cspritepack;
+    cspritepack;*/
 
     constructor () {
         this.cspritepack = 0;
@@ -882,7 +891,7 @@ class CharacterChooser {
 }
 
 class CharacterEditor {
-    elem;
+    // elem;
 
     constructor () {
         this.elem = appendDiv(baseDoc.screens);
@@ -955,8 +964,8 @@ class CharacterEditor {
 }
 
 class Map {
-    elem;
-    img;
+    // elem;
+    // img;
 
     constructor () {}
 
@@ -993,8 +1002,6 @@ class Map {
                 res[group] = 0;
             res[group] += data[name];
         }
-
-        l(res);
 
         for (let name in res) {
             let loc = maplocs.get(name);
@@ -1082,13 +1089,14 @@ let menuData = {
 };
 
 class Menu {
-    menu;
-    settings;
+    // menu;
+    // settings;
 
     constructor () {}
 
     menuElem () {
         baseDoc.hideSelector();
+        map.hide();
         if (this.menu)
             this.hideMenu();
         this.menu = appendDiv(baseDoc.screens);
@@ -1155,11 +1163,15 @@ class Menu {
 }
 
 class BaseDocument {
-    background = null;
-    screens = null;
-    movescreen = null;
+    // background = null;
+    // screens = null;
+    // movescreen = null;
 
     constructor() {
+        this.background = null;
+        this.screens = null;
+        this.movescreen = null;
+
         this.background = appendDiv(document.body);
         this.background.className = 'background';
         this.background.style.backgroundImage = cssUrl(config.defaultBackground);
@@ -1190,12 +1202,8 @@ class BaseDocument {
         for (let i = 0; i < serverSpritesConfig.bodies.length; i++) {
             let body = serverSpritesConfig.bodies[i];
 
-            if (body.name != cname) {
-                /*if (selector.childNodes.length > 0)
-                    break;
-                else*/
+            if (body.name != cname)
                     continue;
-            }
 
             if (body.clothes[player.clothIndex] === '/empty')
                 continue;
@@ -1203,10 +1211,6 @@ class BaseDocument {
             let pose = appendDiv(selector);
             pose.className = 'pose';
             pose.style.backgroundImage = cssUrl(body.emotions[0], body.clothes[player.clothIndex], body.file);
-
-            /*if (body.name == 'Пионер') {
-                l(body);
-            }*/
 
             // @TODO maybe remove
             pose.onclick = function () {
@@ -1559,6 +1563,7 @@ function parseCommand (msg) {
             player.mod = false;
         else
             player.mod = true;
+        updateLs();
     }
     else if (msg.startsWith('/id')) {
         notify(`ID=${player.id}`);
@@ -1566,6 +1571,11 @@ function parseCommand (msg) {
     else if (msg.startsWith('/list')) {
         for (let n in node.users)
             chat.printMessage(node.users[n].id, '**');
+    }
+    else if (msg.startsWith('/dbg')) {
+        dbg(player);
+        dbg(node);
+        dbg(baseDoc);
     }
 }
 
