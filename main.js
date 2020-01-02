@@ -116,7 +116,7 @@ window.onload = function() {
 window.onresize = function () {
     if (baseDoc)
         windowResize();
-    scales = scaleWindow();
+    // scales = scaleWindow();
 }
 
 window.oncontextmenu = function () {
