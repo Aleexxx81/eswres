@@ -136,14 +136,14 @@ bodies[20]
   skip = true
 bodies[21]
   name = Маша
-  file = /modsprites/BKRR/mii/mii_1_inside.png
+  file = /modsprites/boxes/BoxMasha1.png
   emotions[] = /modsprites/BKRR/mii/mii_1_normal.png,/modsprites/BKRR/mii/mii_1_cry_smile.png,/modsprites/BKRR/mii/mii_1_laugh.png,/modsprites/BKRR/mii/mii_1_smile.png,/modsprites/BKRR/mii/mii_1_surp.png
-  clothes[]
+  clothes[] = /modsprites/BKRR/mii/mii_1_inside.png,/modsprites/BKRR/mii/mii_1_outside.png
   accessories[]
 bodies[22]
-  name = Маша
-  file = /modsprites/BKRR/mii/mii_1_outside.png
-  emotions[] = /modsprites/BKRR/mii/mii_1_normal.png,/modsprites/BKRR/mii/mii_1_cry_smile.png,/modsprites/BKRR/mii/mii_1_laugh.png,/modsprites/BKRR/mii/mii_1_smile.png,/modsprites/BKRR/mii/mii_1_surp.png
+  name = Толик /n
+  file = /modsprites/BKRR/tol/tol_1_pioneer.png
+  emotions[] = /modsprites/BKRR/tol/tol_1_normal.png,/modsprites/BKRR/tol/tol_1_pain.png,/modsprites/BKRR/tol/tol_1_sad.png,/modsprites/BKRR/tol/tol_1_shy.png,/modsprites/BKRR/tol/tol_1_smile.png
   clothes[]
   accessories[]
 bodies[23]
@@ -248,81 +248,75 @@ bodies[38]
   clothes[]
   accessories[]
 bodies[39]
-  name = Толик /n
-  file = /modsprites/BKRR/tol/tol_1_pioneer.png
-  emotions[] = /modsprites/BKRR/tol/tol_1_normal.png,/modsprites/BKRR/tol/tol_1_pain.png,/modsprites/BKRR/tol/tol_1_sad.png,/modsprites/BKRR/tol/tol_1_shy.png,/modsprites/BKRR/tol/tol_1_smile.png
-  clothes[]
-  accessories[]
-bodies[40]
   name = Трук
-  file = /modsprites/boxes/boxTruk1.png
+  file = /modsprites/boxes/BoxTruk1.png
   emotions[] = /modsprites/BKRR/tr/tr_1_normal.png,/modsprites/BKRR/tr/tr_1_laugh.png,/modsprites/BKRR/tr/tr_1_sad.png,/modsprites/BKRR/tr/tr_1_smile.png,/modsprites/BKRR/tr/tr_1_surp.png,/modsprites/BKRR/tr/tr_1_upset.png
   clothes[] = /modsprites/BKRR/tr/tr_1_pioneer.png,/modsprites/BKRR/tr/tr_1_cas.png
   accessories[]
-bodies[41]
+bodies[40]
   name = Трук
-  file = /modsprites/boxes/boxTruk2.png
+  file = /modsprites/boxes/BoxTruk2.png
   emotions[] = /modsprites/BKRR/tr/tr_2_normal2.png,/modsprites/BKRR/tr/tr_2_laugh2.png,/modsprites/BKRR/tr/tr_2_sad2.png,/modsprites/BKRR/tr/tr_2_smile2.png,/modsprites/BKRR/tr/tr_2_surp2.png,/modsprites/BKRR/tr/tr_2_upset2.png
   clothes[] = /modsprites/BKRR/tr/tr_2_pioneer.png,/modsprites/BKRR/tr/tr_2_cas.png
   accessories[]
-bodies[42]
+bodies[41]
   name = Лена
   file = /sprites/un/un_1_body.png
   emotions[] = /modsprites/BKRR/un/un_1_shy_smile.png
   clothes[] = /modsprites/BKRR/un/un_1_dress.png
   accessories[]
-bodies[43]
+bodies[42]
   name = Лена
   file = /sprites/un/un_2_body.png
   emotions[]
   clothes[] = /modsprites/BKRR/un/un_2_dress.png
   accessories[]
-bodies[44]
+bodies[43]
   name = Лена
   file = /sprites/un/un_3_body.png
   emotions[]
   clothes[] = /modsprites/BKRR/un/un_3_dress.png
   accessories[]
-bodies[45]
+bodies[44]
   name = Ульяна
   file = /modsprites/BKRR/us/us_1_dress.png
   emotions[] = /modsprites/BKRR/us/us_1_normal_dontlike_bkrr.png,/modsprites/BKRR/us/us_1_evsmile.png,/modsprites/BKRR/us/us_1_yawn.png
   clothes[]
   accessories[]
   skip = true
-bodies[46]
+bodies[45]
   name = Ульяна
   file = /modsprites/BKRR/us/us_2_dress.png
   emotions[] = /sprites/us/us_2_dontlike.png,/sprites/us/us_2_angry.png,/sprites/us/us_2_calml.png,/sprites/us/us_2_fear.png,/sprites/us/us_2_upset.png
   clothes[]
   accessories[]
   skip = true
-bodies[47]
+bodies[46]
   name = Ульяна
   file = /modsprites/BKRR/us/us_3_dress.png
   emotions[] = /sprites/us/us_3_surp1.png,/sprites/us/us_3_cry.png,/sprites/us/us_3_cry2.png,/sprites/us/us_3_shy.png,/sprites/us/us_3_shy2.png,/sprites/us/us_3_surp2.png,/sprites/us/us_3_surp3.png
   clothes[]
   accessories[]
   skip = true
-bodies[48]
+bodies[47]
   name = Юля
   file = /sprites/uv/uv_1_body.png
   emotions[] = /modsprites/BKRR/uv/uv_1_pidontlike.png,/modsprites/BKRR/uv/uv_1_pisad.png,/modsprites/BKRR/uv/uv_1_pirage.png,/modsprites/BKRR/uv/uv_1_pishocked.png
   clothes[] = /modsprites/BKRR/uv/uv_1_pibody.png
   accessories[] = /modsprites/BKRR/uv/uv_1_pan.png
-bodies[49]
+bodies[48]
   name = Юля
   file = /sprites/uv/uv_2_body.png
   emotions[] = /modsprites/BKRR/uv/uv_2_pinormal.png,/modsprites/BKRR/uv/uv_2_pismile.png
   clothes[] = /modsprites/BKRR/uv/uv_2_pibody.png
   accessories[] = /modsprites/BKRR/uv/uv_2_pan.png
-bodies[50]
+bodies[49]
   name = Юля
   file = /sprites/uv/uv_3_body.png
   emotions[] = /modsprites/BKRR/uv/uv_3_pilaugh.png,/modsprites/BKRR/uv/uv_3_pigrin.png,/modsprites/BKRR/uv/uv_3_pisurprise2.png
   clothes[] = /modsprites/BKRR/uv/uv_3_pibody.png
   accessories[] = /modsprites/BKRR/uv/uv_3_pan.png
-bodies[51]
+bodies[50]
   name = Юля
   file = /sprites/uv/uv_4_body.png
   emotions[] = /modsprites/BKRR/uv/uv_4_pisurprise.png,/modsprites/BKRR/uv/uv_4_piguilty.png,/modsprites/BKRR/uv/uv_4_piupset.png

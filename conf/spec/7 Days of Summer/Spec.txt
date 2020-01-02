@@ -1,15 +1,16 @@
 bodies[0]
   name = Алька
-  file = /modsprites/7DS/al/al_1_pioneer.png
+  file = /modsprites/boxes/BoxAlka1.png
   emotions[] = /modsprites/7DS/al/al_1_normal.png,/modsprites/7DS/al/al_1_angry.png,/modsprites/7DS/al/al_1_dontlike.png,/modsprites/7DS/al/al_1_laugh.png,/modsprites/7DS/al/al_1_sad.png,/modsprites/7DS/al/al_1_shy.png,/modsprites/7DS/al/al_1_smile.png
-  clothes[]
+  clothes[] = /modsprites/7DS/al/al_1_pioneer.png,/modsprites/7DS/al/al_1_shirt.png
   accessories[]
 bodies[1]
-  name = Алька
-  file = /modsprites/7DS/al/al_1_shirt.png
-  emotions[] = /modsprites/7DS/al/al_1_normal.png,/modsprites/7DS/al/al_1_angry.png,/modsprites/7DS/al/al_1_dontlike.png,/modsprites/7DS/al/al_1_laugh.png,/modsprites/7DS/al/al_1_sad.png,/modsprites/7DS/al/al_1_shy.png,/modsprites/7DS/al/al_1_smile.png
+  name = Ульяна
+  file = /sprites/us/us_1_body.png
+  emotions[] = /modsprites/7DS/us/us_4_normal.png,/modsprites/7DS/us/us_4_grin.png,/modsprites/7DS/us/us_4_laugh.png,/modsprites/7DS/us/us_4_shy.png,/modsprites/7DS/us/us_4_smile.png
   clothes[]
   accessories[]
+  skip = true
 bodies[2]
   name = Саныч
   file = /modsprites/7DS/ba/ba_1_body.png
@@ -253,10 +254,3 @@ bodies[41]
   emotions[]
   clothes[] = /modsprites/7DS/un/un_3_sleep.png
   accessories[]
-bodies[42]
-  name = Ульяна
-  file = /sprites/us/us_1_body.png
-  emotions[] = /modsprites/7DS/us/us_4_normal.png,/modsprites/7DS/us/us_4_grin.png,/modsprites/7DS/us/us_4_laugh.png,/modsprites/7DS/us/us_4_shy.png,/modsprites/7DS/us/us_4_smile.png
-  clothes[]
-  accessories[]
-  skip = true

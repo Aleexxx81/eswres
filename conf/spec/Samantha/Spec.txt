@@ -12,7 +12,7 @@ bodies[1]
   accessories[]
 bodies[2]
   name = Лео
-  file = /modsprites/boxes/boxLeo1.png
+  file = /modsprites/boxes/BoxLeo1.png
   emotions[] = /modsprites/SS/leo/idle1.png,/modsprites/SS/leo/rast1.png,/modsprites/SS/leo/scared1.png,/modsprites/SS/leo/smile1.png,/modsprites/SS/leo/surp1.png,/modsprites/SS/leo/unsure1.png
   clothes[] = /modsprites/SS/leo/leo1.png,/modsprites/SS/leo/leo1h.png
   accessories[]
