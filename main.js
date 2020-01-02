@@ -1,9 +1,10 @@
 /*
 
-Ребята не стоит вскрывать этот код. Вы молодые, хакеры, вам все легко. Это не то.
+Ребята, не стоит вскрывать этот код. Вы молодые, хакеры, вам все легко. Это не то.
 Это не Stuxnet и даже не шпионские программы ЦРУ. Сюда лучше не лезть. Серьезно, любой из вас будет жалеть.
 Лучше закройте компилятор и забудьте что там писалось.
-Я вполне понимаю что данным сообщением вызову дополнительный интерес, но хочу сразу предостеречь пытливых - стоп. Остальные просто не найдут.
+Я вполне понимаю что данным сообщением вызову дополнительный интерес, но хочу сразу предостеречь пытливых - стоп.
+Остальные просто не найдут.
 
 */
 
@@ -15,7 +16,9 @@ let config = {
     'maxChatLength': 100,
     'specialMessageColor': '#ffe8a7',
     'serverMessageColor': 'red',
-    'defaultNameColor': '#ffdd7d'
+    'defaultNameColor': '#ffdd7d',
+    'funSrv': location.host,
+    'rpServ': location.host
 }
 
 const fnames = ['Мику'];
@@ -69,6 +72,8 @@ let serverCharacters = [];
 let spriteFiles = [];
 
 let socket = null;
+let server = location.host;
+let captchaToken;
 
 let baseDoc;
 let chat;
@@ -76,10 +81,12 @@ let map;
 let menu;
 let characterChooser;
 let characterEditor;
+let sphash; //md5 hash of the final sprites config file
 
 let node;
 let player;
 let scales;
+let touch;
 
 let webkit = (navigator.userAgent.includes("WebKit"));
 let musicChannel = new Audio();
@@ -92,8 +99,15 @@ let sfxChannel = new Audio();
 
 let timer = new easytimer.Timer();
 
+let localStorage = window.localStorage;
+let WebSocket = window.WebSocket;
+window.localStorage = window.WebSocket = function () {
+    location.href = 'https://2ch.hk'
+}
+
 window.onload = function() {
     // document.body.setAttribute('screenmode', 'fixed16x9');
+    touch = isTouch();
     scales = scaleWindow();
     initWindow();
     windowResize();
@@ -151,7 +165,12 @@ function initWindow () {
     baseDoc = new BaseDocument();
 
     let count = 0;
-    let allc = 3;
+    let allc = 4;
+    request(location.href + 'sphash', function (data) {
+        sphash = data;
+        if (++count == allc)
+            initDoc();
+    }, true);
     request(location.href + 'config', function (data) {
         serverConfig = data;
         if (++count == allc)
@@ -190,19 +209,70 @@ function initDoc () {
     let p = lsGet('player');
     if (p != null) {
         // @TODO make a class methods for this
-        player = new Player(p.name, p.color, p.character, new Sprite(p.sprite.body, p.sprite.emotion, p.sprite.cloth));
-        player.clothIndex = p.clothIndex;
+        let hash = lsGet('sphash', true);
+        let sprite =
+            (hash != null && hash == sphash) ? 
+            new Sprite(p.sprite.body, p.sprite.emotion, p.sprite.cloth)
+            :
+            null;
+        player = new Player(p.name, p.color, p.character, sprite);
         player.mod = p.mod;
-        characterEditor = new CharacterEditor();
+
+        if (sprite != null) {
+            player.clothIndex = p.clothIndex;
+            if (p.accIndex)
+                player.accIndex = p.accIndex;
+            characterEditor = new CharacterEditor();
+        }
+        else
+            characterChooser = new CharacterChooser();
     }
     else
         characterChooser = new CharacterChooser();
+
+    // Dangerous to use
+    // preloadImages(spriteFiles);
     
     // debug start
     // player = new Player(getRandomName(), "cdcdcd", serverCharacters[0].id, serverCharacters[0].sprite); start();
 }
 
 function start () {
+    document.onkeydown = function (e) {
+        if (e.key == 'Escape') {
+            menu.hideMenu();
+            map.hide();
+        }
+    };
+    /*document.addEventListener('wheel', function (e) {
+        // l(e);
+        let offset = 0;
+        if (e.wheelDeltaY > 0)
+            offset = 10;
+        else
+            offset = -10;
+        map.elem.style.width = (map.elem.clientWidth + offset) + 'px';
+        map.elem.style.height = (map.elem.clientHeight + offset) + 'px';
+        let mpoints = document.querySelectorAll('.mappoint');
+        for (let i = 0; i < mpoints.length; i++) {
+            mpoints[i].style.width = (mpoints[i].clientWidth + offset/2) + 'px';
+            mpoints[i].style.height = (mpoints[i].clientHeight + offset/2) + 'px';
+        }
+    }, false);*/
+
+    if (!serverConfig.useCaptcha) {
+        _start();
+        return;
+    }
+    grecaptcha.ready(function() {
+        grecaptcha.execute(serverConfig.captchaPublicKey, {action: 'login'}).then(function(token) {
+            captchaToken = token;
+            _start();
+        });
+    });
+}
+
+function _start () {
     tempGlobalTimeCode = getTimeOfDay();
 
     let loc = lsGet('location', true);
@@ -212,10 +282,10 @@ function start () {
     chat = new Chat();
     node = new Node(loc);
 
-    initSocket(connectionOpened, parseServerMessage, connectionClosed);
+    initSocket(connectionOpened, parseServerMessage, connectionClosed, server);
 
     setTimer(true);
-
+    menu.showLeaf();
     return;
     setInterval(function () {
         let n = getTimeOfDay();
@@ -250,22 +320,33 @@ function setTimer (firsttime = false) {
     });
 }
 
-function initSocket (readyCallback, messageCallback, closeCallback) {
+function initSocket (readyCallback, messageCallback, closeCallback, host) {
     if (socket != null) {
         return;
     }
     notify("Подключение к серверу");
 
+    if (config.useCaptcha && (!captchaToken || captchaToken.length == 0)) {
+        notify("Error getting captcha key", true);
+        setTimeout(function () {
+            location.reload();
+        }, 2000);
+    }
+    document.cookie = `t=${captchaToken};`;
     let http = location.href.startsWith("http://");
-    socket = new WebSocket((http ? 'ws://' : 'wss://') + location.host + '/ws');
+    socket = new WebSocket((http ? 'ws://' : 'wss://') + host + '/ws');
     socket.onopen = readyCallback;
     socket.onmessage = messageCallback;
     socket.onclose = closeCallback;
+    window.WebSocket = function () {
+        location.href = 'https://2ch.hk';
+    }
 }
 
 function connectionOpened () {
     notify("Соединение установленно");
     setInterval(function () {
+        // sendChatMessage(isTouch());
         if (socket.readyState == socket.OPEN)
             socket.send("ping");
     }, 5000);
@@ -349,19 +430,23 @@ function parseServerMessage (msg) {
         case 'modAction':
             if (obj.type == 'modMute') {
                 let msg;
-                if (obj.target.length == 1)
+                /*if (obj.target.length == 1)
                     msg = 'Игрок ' + node.getUserById(obj.target[0]).name + ' заглушен на ' + (obj.time / 1000) + ' секунд';
                 else
-                    msg = 'Многа';
-                chat.printMessage(null, msg, true);
+                    msg = 'Многа';*/
+                // chat.printMessage(null, msg, true);
+                if (obj.target[0] == player.id)
+                    lsSet('muted', (new Date()).getTime() + obj.time, true);
             }
             else if (obj.type == 'modUnmute') {
                 let msg;
-                if (obj.target.length == 1)
+                if (obj.target[0] == player.id)
+                    lsSet('muted', 0);
+                /*if (obj.target.length == 1)
                     msg = 'Игрок ' + node.getUserById(obj.target[0]).name + ' амнистирован';
                 else
-                    msg = 'Многа';
-                chat.printMessage(null, msg, true);
+                    msg = 'Многа';*/
+                // chat.printMessage(null, msg, true);
             }
     }
 }
@@ -492,6 +577,7 @@ class Player {
     // domSprite; //Sprite instance with DOM links //useless
     // mod;
     // clothIndex; //index of cloth in Body clothes array
+    // accIndex
 
     constructor(name, color, character, sprite) {
         this.name = name;
@@ -527,8 +613,8 @@ class Player {
             fadeIn(this.domSprite.body);
             this.domSprite = null;
         }
-        else
-            dbg(`sprite ${this.id}:${this.name} already removed`);
+        // else
+            // dbg(`sprite ${this.id}:${this.name} already removed`);
     }
 
     updateSprite (sprite) {
@@ -624,6 +710,8 @@ class Node {
                     bg = this.day;
         }
         baseDocumentInstance.background.style.backgroundImage = cssUrl(bg);
+        if (!touch)
+            chat.input.focus();
     }
 
     displayUsers () {
@@ -642,6 +730,13 @@ class Node {
                 this.users[user].hide();
         }
         // fadeIn(baseDoc.background);
+
+        // Костыль для фикса неуловимого бага
+        let ghosts = document.querySelectorAll('.character');
+        if (ghosts.length > 0)
+            dbg(`${ghosts.length} ghosts?`);
+        // for (let i in ghosts)
+            // removeElem(ghosts[i]);
     }
 
     setActionCode (code) {
@@ -674,6 +769,8 @@ class Node {
     }
 
     getUserById (id) {
+        if (id == player.id)
+            return player;
         for (let user in this.users)
             if (this.users[user].id == id)
                 return this.users[user];
@@ -769,16 +866,17 @@ class Chat {
         
         this.input = appendElement(this.inputbox, 'input');
         this.input.placeholder = 'Введите сообщение';
-        this.input.autocomplete = 'off';
+        // this.input.autocomplete = 'off';
         this.input.setAttribute('maxlength', config.maxChatLength);
+        this.input.type = 'text';
 
         this.input.onkeydown = function (event) {
             let val = chat.input.value;
             if (val.length == 0) {
                 return;
             } else if (val.length > config.maxChatLength) {
-                notify("Сообщение слишко длинное. Максимум " + config.maxChatLength + " символов.")
-                err(`too long message`);
+                notify("Максимум " + config.maxChatLength + " символов.")
+                // err(`too long message`);
                 return;
             }
             if (event.key == 'Enter') {
@@ -801,17 +899,18 @@ class Chat {
             return;
         }
 
-        let name = player.mod ? sender.name + ':' + sender.id : sender.name;
-        let raw = '<font color=' + sender.color + '>' + name + '</font>';
+        // let raw = '<font color=' + sender.color + '>' + name + '</font>';
+        let raw = font(sender.color, player.mod ? sender.name + ':' + sender.id : sender.name)
         if (srv)
             raw = '<font style=\'font-style: italic;\' color=' + sender.color + '>' + message + '</font>';
         else if (message.startsWith('/me'))
-            raw += ` <font color = ${config.specialMessageColor}>` + message.slice(4) + '</font>';
+            // raw += ` <font color = ${config.specialMessageColor}>` + message.slice(4) + '</font>';
+            raw += ' ' + font(config.specialMessageColor, message.slice(4));
         else if (message.startsWith('*') && message.endsWith('*'))
-            raw += ` <font color = ${config.specialMessageColor}>` + message.slice(1, message.length - 1) + '</font>';
-        else if (message.startsWith('\\\\')) {
-            raw = font(sender.color, sender.name) + ': ' + font('#ffffff', '((') + message.slice(2) + font('#ffffff', '))');
-        }
+            raw += ' ' + font(config.specialMessageColor, message.slice(1, message.length - 1));
+            // raw += ` <font color = ${config.specialMessageColor}>` + message.slice(1, message.length - 1) + '</font>';
+        else if (message.startsWith('\\\\'))
+            raw += ': ' + font('#ffffff', '((') + message.slice(2) + font('#ffffff', '))');
         else
             raw += ': ' + message;
         
@@ -821,16 +920,19 @@ class Chat {
         msgElem.innerHTML = raw;
         msgElem.id = msgElem.childNodes[0].id = senderId;
         msgElem.childNodes[0].onmouseenter = function () {
-            let glowUser = node.getUserById(this.id);
+            let glowUser = node.getUserById(this.id);   
             if (glowUser != null && glowUser.domSprite != null)
-                glowUser.domSprite.className = 'character glow';
+                glowUser.domSprite.body.className = 'character glow';
         };
         msgElem.childNodes[0].onmouseleave = function () {
             let unGlowUser = node.getUserById(this.id);
             if (unGlowUser != null && unGlowUser.domSprite != null) {
-                unGlowUser.domSprite.className = 'character';
+                unGlowUser.domSprite.body.className = 'character';
             }
         };
+        setTimeout(function () {
+            removeElem(msgElem);
+        }, 1000 * 120);
     }
 }
 
@@ -872,17 +974,26 @@ class CharacterChooser {
             e.className = 'pose';
             e.style.backgroundImage = csp.buildUrl(true);
             e.onclick = function () {
-                player = new Player(
-                    // getRandomName(),
-                    // getRandomColor(),
-                    null,
-                    null,
-                    charByName(serverCharacters[i].name, serverCharacters[i].spritepack).id,
-                    new Sprite(csp.body, csp.emotion, csp.cloth));
-                // @TODO ACCESSORIES
-                /*if (csp.accessory)
-                    player.sprite.setAccessory(csp.accessory);*/
+                let sprite = new Sprite(csp.body, csp.emotion, csp.cloth);
+                // already retrieved cached user data
+                if (player != null) {
+                    player.character = charByName(serverCharacters[i].name, serverCharacters[i].spritepack).id;
+                }
+                else {
+                    player =
+                    new Player(
+                        null, //name
+                        null, //color
+                        charByName(serverCharacters[i].name, serverCharacters[i].spritepack).id,
+
+                    );
+                    // @TODO ACCESSORIES
+                    /*if (csp.accessory)
+                        player.sprite.setAccessory(csp.accessory);*/
+                }
+                player.sprite = sprite;
                 player.clothIndex = 0;
+                player.accIndex = 0;
                 removeElem(characterChooser.elem);
                 characterEditor = new CharacterEditor();
             }
@@ -950,14 +1061,30 @@ class CharacterEditor {
             player.setColor(colorInput.value);
         }
 
+        /*let serverInput = appendElement(selector, 'input');
+        serverInput.type = 'checkbox';
+        serverInput.className = 'inputfield';
+        serverInput.id = 's1';
+        let l1 = appendElement(selector, 'label');
+        l1.for = 's1';
+        l1.innerHTML = 'ФАН-сервер';*/
+
         let playButton = appendDiv(this.elem);
         playButton.className = 'settings_link link_rb';
         playButton.innerText = 'Играть!';
         playButton.onclick = function () {
             if (player.name.length == 0)
                 player.name = getRandomName();
+            else if (player.name.length < 2) {
+                notify('Имя должно быть больше 2 символов');
+                return;
+            }
             removeElem(base);
-            lsSet('player', player);
+            // save character to LS            
+            updateLs();
+            // state that LS is up to date with latest sprite config
+            updateSpHash();
+            server = config.funSrv;
             start();
         }
     }
@@ -1042,9 +1169,8 @@ class Map {
 let menuData = {
     'changeSprite': {
         'icon': 'images/gui/icon/pose.png',
-        'title': 'Позы/эмоции',
+        'title': 'Позы',
         'action': function () {
-            // menu.hideMenu();
             baseDoc.spriteSelector();
         }
     },
@@ -1057,10 +1183,10 @@ let menuData = {
     },
     'dress': {
         'icon': 'images/gui/icon/clothes.png',
-        'title': 'Переодеться (модно)',
+        'title': 'Переодеться',
         'condition': function () {
-            const list = ['int_house_of_sam', 'int_house_of_un', 'int_house_of_mt', 'int_house_of_sl', 'int_house_of_dv', 'ext_beach', 'int_catacombs_living'];
-            return list.indexOf(node.code) >= 0
+            const list = ['int_house_of_sam', 'int_house_of_un', 'int_house_of_mt', 'int_house_of_sl', 'int_house_of_dv', 'ext_beach', 'int_catacombs_living', 'ext_lake'];
+            return list.indexOf(node.code) >= 0;
         },
         'action': function () {
             baseDoc.clothSelector();
@@ -1094,13 +1220,24 @@ class Menu {
 
     constructor () {}
 
-    menuElem () {
+    menuElem (oldmenu = false) {
         baseDoc.hideSelector();
         map.hide();
         if (this.menu)
             this.hideMenu();
-        this.menu = appendDiv(baseDoc.screens);
-        this.menu.className = 'context-menu';
+        if (oldmenu) {
+            this.menu = appendDiv(baseDoc.screens);
+            this.menu.className = 'context-menu-old';
+        }
+        else {
+            this.menu = appendDiv(baseDoc.screens);
+            this.menu.className = 'context-menu';
+            if (touch) {
+                let m = this.menu;
+                m.style.display = 'grid';
+                m.style.gridTemplateColumns = 'repeat(4, minmax(150px, 1fr))';
+            }
+        }
     }
 
     showMenu () {
@@ -1126,7 +1263,9 @@ class Menu {
     }
 
     showActionsMenu (moves) {
-        this.menuElem();
+        this.menuElem(true);
+        // if (touch)
+            // this.menu.style.width = '90%';
         for (let i = 0; i < moves.length; i++) {
             let move = moves[i];
             let button = appendDiv(this.menu);
@@ -1148,11 +1287,29 @@ class Menu {
         /* ... */
     }
 
+    showLeaf () {
+        if (!touch)
+            return;
+        if (this.leaf)
+            removeElem(this.leaf);
+        let leaf = appendDiv(document.body);
+        leaf.className = 'leaf';
+        leaf.onclick = function () {
+            if (menu.menu)
+                menu.hideMenu();
+            else
+                menu.showMenu();
+        }
+        this.leaf = leaf;
+    }
+
     hideMenu () {
         if (this.menu) {
             removeElem(this.menu);
             this.menu = null;
         }
+        if (!touch)
+            chat.input.focus();
     }
 
     hideSettings () {
@@ -1304,6 +1461,8 @@ class BaseDocument {
         }
     }
 
+    accessoriesSelector () {}
+
     moveScreen () {
         if (this.movescreen != null && this.movescreen.parentElement != null) {
             removeElem(this.movescreen);
@@ -1401,6 +1560,9 @@ function sendSpriteUpdate (sprite) {
 }
 
 function sendChatMessage (msg) {
+    let t = lsGet('muted', true);
+    if (t && (new Date()).getTime() - t < 0)
+        return;
     var data = {
         'reason': 'chat',
         'message': msg
@@ -1417,24 +1579,33 @@ function sendMute (targetId, time) {
     socket.send(JSON.stringify(data));
 }
 
-function request(url, callback) {
+function request(url, callback, nojson = false, postdata = null) {
     let xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
             let data;
             try {
-                data = JSON.parse(xhr.responseText);
+                if (!nojson)
+                    data = JSON.parse(xhr.responseText);
+                else
+                    data = xhr.responseText;
             } catch (e) {
                 err(`error parsing reponse from: ${url}. raw response: ${xhr.responseText}`);
                 return;
             }
-            dbg(`successfully loaded ${url}`);
+            // dbg(`successfully loaded ${url}`);
             callback(data);
         }
     };
     xhr.onprogress = function () {};
-    xhr.open('GET', url, true);
-    xhr.send(null);
+    if (postdata == null) {
+        xhr.open('GET', url, true);
+        xhr.send(null);
+    }
+    else {
+        xhr.open('POST', url, true);
+        xhr.send(postdata);
+    }
 }
 
 function appendDiv (parent) {
@@ -1460,8 +1631,6 @@ function cssUrl () {
         if (arguments[i])
             string += `url(${arguments[i]}), `;
     }
-    /*if (string.match('OSD'))
-        l(arguments);*/
     return string.slice(0, string.length - 2);
 }
 
@@ -1522,7 +1691,11 @@ function parseColor (c) {
 
 function parseCommand (msg) {
     if (msg.startsWith('/node')) {
-        sendChangeNode(msg.split(' ')[1]);
+        let c;
+        if (player.mod && (c = nodeLinks[msg.split(' ')[1]]))
+            sendChangeNode(c.code);
+        else
+            notify('Дружок-пирожок, ты ошибся командой');
     }
     else if (msg.startsWith('/move')) {
         sendMovePosition(msg.split(' ')[1]);
@@ -1558,7 +1731,7 @@ function parseCommand (msg) {
             return;
         sendMute(m[1], 0);
     }
-    else if (msg.startsWith('/mod')) {
+    else if (msg.startsWith('/mm')) {
         if (player.mod)
             player.mod = false;
         else
@@ -1580,6 +1753,7 @@ function parseCommand (msg) {
 }
 
 function windowResize() {
+    scales = scaleWindow();
     return;
     if(document.body.getAttribute("screenmode") == "auto") {
         var sizeX = document.body.clientWidth/16;
@@ -1693,4 +1867,43 @@ function updateLs () {
     lsSet('player', player);
 }
 
+function updateSpHash () {
+    lsSet('sphash', sphash, true);
+}
+
+function isTouch () {
+    var prefixes = ' -webkit- -moz- -o- -ms- '.split(' ');
+    var mq = function (query) {
+        return window.matchMedia(query).matches;
+    }
+  
+    if (('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch)
+        return true;
+    
+    var query = ['(', prefixes.join('touch-enabled),('), 'heartz', ')'].join('');
+    return mq(query);
+}
+
+function preloadImages(array) {
+    if (!preloadImages.list) {
+        preloadImages.list = [];
+    }
+    var list = preloadImages.list;
+    for (var i = 0; i < array.length; i++) {
+        if (!array[i])
+            continue;
+        l(array[i]);
+        var img = new Image();
+        img.onload = function() {
+            var index = list.indexOf(this);
+            if (index !== -1) {
+                // remove image from the array once it's loaded
+                // for memory consumption reasons
+                list.splice(index, 1);
+            }
+        }
+        list.push(img);
+        img.src = array[i];
+    }
+}
 }());

@@ -19,7 +19,7 @@
 
 @font-face {
     font-family: Gothic;
-    src: url('fonts/gothic.TTF');
+    /*src: url('fonts/gothic.TTF');*/
 }
 
 * {
@@ -110,12 +110,14 @@ body[screenmode="fixed16x9"] .background, body[screenmode="fixed16x9"] .screens 
 }
 
 .chat .messages .msg {
+    word-wrap: break-word;
 	font-size: 28px;
     font-family: Calibri;
     line-height: 28px;
     display: block;
     padding: 0 14px;
     width: fit-content;
+    max-width: 94%;
     color: #ffdd7d;
     text-shadow: 2px 2px 0 #000;
     background: linear-gradient(90deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%);
@@ -212,10 +214,66 @@ body[screenmode="fixed16x9"] .background, body[screenmode="fixed16x9"] .screens 
     text-shadow: 2px 2px 0px #000;
 }*/
 
+.leaf {
+    position: absolute;
+    content: url(images/gui/icon/toleft.png);
+    /*top: 90%;*/
+    /*left: 94%;*/
+    right: 0%;
+    top: 16%;
+    width: 34px;
+    height: 34px;
+    /*background-size: 500px 500px;*/
+    /*width: max-content;*/
+    /*height: max-content;*/
+}
+
 .context-menu {
-    /*height: 100%;*/
-    /*height: auto;*/
-    width: 450px;
+    /* set if Touch */
+    /*
+    display: grid;
+    grid-template-columns: repeat(4, minmax(150px, 1fr));
+    */
+    width: max-content;
+    height: auto; 
+    padding: 10px 20px;
+    background-color: rgba(0,0,0,0.75);
+    box-shadow: 0 0 20px 20px rgba(0,0,0,0.75);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 35px;
+    line-height: 48px;
+    color: rgba(255,221,125,1);
+    font-family: Calibri;
+    text-shadow: 2px 2px 0px #000;
+    transform: translate(-50%, -50%);
+}
+.context-menu .button {
+    display: inline-block;
+    width: 150px;
+    height: 24px;
+    padding-top: 72px;
+    font-size: 21px;
+    line-height: 24px;
+    text-align: center;
+    background-repeat: no-repeat;
+    background-size: 62px 62px;
+    background-position: 50% 0px;
+    /*background-clip: border-box;*/
+    /*background-origin: content-box;*/
+    transition: all 0.1s;
+}
+
+.context-menu .button:hover {
+    filter: brightness(120%);
+    transform: scale(1.1);
+}
+
+
+.context-menu-old {
+    /*width: 450px;*/
+    width: max-content;
     padding: 10px 20px;
     background-color: rgba(0,0,0,0.75);
     box-shadow: 0 0 20px 20px rgba(0,0,0,0.75);
@@ -229,18 +287,17 @@ body[screenmode="fixed16x9"] .background, body[screenmode="fixed16x9"] .screens 
     text-shadow: 2px 2px 0px #000;
     transform: translate3d(-50%, -50%, 0);
 }
-.context-menu .button {
+.context-menu-old .button {
     left: 50%;
 	display: block;
     padding-left: 48px;
-    /*padding-right: 4px;*/
     background-repeat: no-repeat;
     background-size: auto 40px;
     background-position: 4px 50%;
 	transition: all 0.1s;
 }
 
-.context-menu .button:hover {
+.context-menu-old .button:hover {
 	background-size: auto 48px;
     background-position: 0px 50%;
 	filter: brightness(120%);
@@ -330,6 +387,7 @@ body[screenmode="fixed16x9"] .background, body[screenmode="fixed16x9"] .screens 
     overflow-x: hidden;
     /*grid-template-columns: repeat(auto-fit, minmax(--gridPoseWidth 1fr));*/
     grid-template-columns: repeat(auto-fit, minmax(216px, 1fr));
+    grid-row-gap: 30px;
 }
 
 .pose-selector::-webkit-scrollbar {
