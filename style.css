@@ -583,10 +583,10 @@ body[screenmode="fixed16x9"] .background, body[screenmode="fixed16x9"] .screens 
     color: rgba(255,221,125,1);
     font-family: Calibri;
     text-shadow: 2px 2px 0px #000;
-	animation-name: hide;
-    animation-delay: 10s;
-    animation-duration: 0.5s;
-    animation-fill-mode: forwards;
+	/*animation-name: hide;*/
+    /*animation-delay: 10s;*/
+    /*animation-duration: 0.5s;*/
+    /*animation-fill-mode: forwards;*/
 }
 
 .fade {

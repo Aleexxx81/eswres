@@ -8,7 +8,7 @@
 
 */
 
-(function a () {
+// (function a () {
 let config = {
     'defaultBackground': 'images/gui/settings/history_bg.jpg',
     'host': 'localhost:3030',
@@ -521,9 +521,14 @@ function parseSpriteConfig (config) {
         id = res.id;
         if (body.name != currentCharName) {
             let char = charByName(body.name, body.spritepack);
+            // don't set next another bodies as primary for char if first already set
+            if (char.sprite)
+                continue;
             res.id = undefined;
             char.sprite = res;
+            currentCharName = body.name;
         }
+        // l(currentCharName);
     }
 }
 
@@ -1802,18 +1807,24 @@ function windowResize() {
 }
 
 function notify(text, stay = false) {
-    if(document.querySelector("#notify"))
-        removeElem(document.querySelector("#notify"));
+    let delay = 2;
+    let old;
+    if((old = document.querySelectorAll("#notify")) && old.length > 0)
+        removeElem(old[0]);
     dbg(`notify: ${text}`);
     var notify = appendDiv(baseDoc.screens);
     notify.id = "notify"
     notify.innerHTML = text;
     if (stay)
         return;
-    setTimeout(function () {
-        if (notify && notify.parentElement)
-            removeElem(notify)
-    }, 1500);
+    if (notify && notify.parentElement) {
+        notify.style.animationName = 'hide';
+        notify.style.animationDelay = `${delay}s`;
+        notify.style.animationDuration = '0.5s';
+        notify.style.animationFillMode = 'forwards';
+        // removeElem(notify)
+    }
+    // setTimeout(function () {}, 3000);
 }
 
 let currentPlaying;
@@ -1906,4 +1917,4 @@ function preloadImages(array) {
         img.src = array[i];
     }
 }
-}());
+// }());
