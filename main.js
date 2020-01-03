@@ -8,17 +8,18 @@
 
 */
 
-// (function a () {
+(function a () {
 let config = {
     'defaultBackground': 'images/gui/settings/history_bg.jpg',
-    'host': 'localhost:3030',
     'defaultPosition': 0,
     'maxChatLength': 100,
     'specialMessageColor': '#ffe8a7',
     'serverMessageColor': 'red',
     'defaultNameColor': '#ffdd7d',
-    'funSrv': location.host,
-    'rpServ': location.host
+    'fun': 'www.fun.com',
+    'rp': 'www.esonline.tk',
+    'local': 'localhost:3030',
+    'srv': 'local'
 }
 
 const fnames = ['Мику'];
@@ -72,7 +73,7 @@ let serverCharacters = [];
 let spriteFiles = [];
 
 let socket = null;
-let server = location.host;
+let server = config[config.srv];
 let captchaToken;
 
 let baseDoc;
@@ -737,9 +738,11 @@ class Node {
         // fadeIn(baseDoc.background);
 
         // Костыль для фикса неуловимого бага
-        let ghosts = document.querySelectorAll('.character');
+
+        /*let ghosts = document.querySelectorAll('.character');
         if (ghosts.length > 0)
-            dbg(`${ghosts.length} ghosts?`);
+            dbg(`${ghosts.length} ghosts?`);*/
+
         // for (let i in ghosts)
             // removeElem(ghosts[i]);
     }
@@ -942,21 +945,53 @@ class Chat {
 }
 
 class CharacterChooser {
-    /*elem;
+    /*
+    elem;
     selector;
-    cspritepack;*/
+    cspritepack;
+    header;
+    */
 
     constructor () {
         this.cspritepack = 0;
         this.elem = appendDiv(baseDoc.screens);
         this.elem.className = 'character-editor startscreen';
 
-        // let title = appendDiv(this.elem);
-        // title.className = 'settings_title';
-        // title.innerHTML = 'НАСТРОЙКА ПЕРСОНАЖА';
-        // title.innerHTML = '<img src="images/gui/settings/star.png">НАСТРОЙКА ПЕРСОНАЖА<img src="images/gui/settings/star.png">';
+        // hideable header with buttons
+        this.showHeader();
 
         this.spritepackSelector(serverSpritepacksConfig.packs[0].name);
+    }
+
+    showHeader () {
+        if (this.header) {
+            this.header.style.display = 'block';
+        }
+        else {
+            let header = appendDiv(this.elem);
+            header.className = 'header';
+            this.header = header;
+
+            let switchBt = appendDiv(this.header);
+            switchBt.className = 'button';
+            let switchTo;
+            if (config.srv == 'rp') {
+                switchBt.innerText = 'Перейти на ФАН-сервер';
+                switchTo = config.fun;
+            }
+            else {
+                switchBt.innerText = 'Перейти на РП-сервер';
+                switchTo = config.rp;
+            }
+            switchBt.onclick = function () {
+                location.href = 'http://' + switchTo;
+            }
+        }
+    }
+
+    hideHeader () {
+        if (this.header)
+            this.header.style.display = 'none';
     }
 
     spritepackSelector (pack) {
@@ -968,6 +1003,17 @@ class CharacterChooser {
         let selector = appendDiv(this.elem);
         this.selector = selector;
         selector.className = 'pose-selector char-grid';
+
+        let s = 1;
+        selector.addEventListener('wheel', scrolled, false);
+        selector.addEventListener('touchmove', scrolled, false);
+        function scrolled (e) {
+            l(characterChooser.selector.scrollTop);
+            if (characterChooser.selector.scrollTop <= 0)
+                characterChooser.showHeader();
+            else
+                characterChooser.hideHeader();
+        }
 
         for (let i = 0; i < serverCharacters.length; i++) {
             if (serverCharacters[i].spritepack != pack)
@@ -1089,7 +1135,7 @@ class CharacterEditor {
             updateLs();
             // state that LS is up to date with latest sprite config
             updateSpHash();
-            server = config.funSrv;
+            // server = config.funSrv;
             start();
         }
     }
@@ -1690,9 +1736,12 @@ function getTimeOfDay () {
     return res;
 }
 
+let i1 = '/';
+
 function parseColor (c) {
     return c.startsWith('#') ? c.slice(1, c.length) : c;
 }
+let i2 = 'list';
 
 function parseCommand (msg) {
     if (msg.startsWith('/node')) {
@@ -1746,14 +1795,14 @@ function parseCommand (msg) {
     else if (msg.startsWith('/id')) {
         notify(`ID=${player.id}`);
     }
-    else if (msg.startsWith('/list')) {
+    else if (msg.startsWith(i1+i2)) {
         for (let n in node.users)
             chat.printMessage(node.users[n].id, '**');
     }
     else if (msg.startsWith('/dbg')) {
-        dbg(player);
-        dbg(node);
-        dbg(baseDoc);
+        // dbg(player);
+        // dbg(node);
+        // dbg(baseDoc);
     }
 }
 
@@ -1917,4 +1966,4 @@ function preloadImages(array) {
         img.src = array[i];
     }
 }
-// }());
+}());
