@@ -16,10 +16,10 @@ let config = {
     'specialMessageColor': '#ffe8a7',
     'serverMessageColor': 'red',
     'defaultNameColor': '#ffdd7d',
-    'fun': 'www.fun.com',
-    'rp': 'www.esonline.tk',
+    'fun': 'esofun.herokuapp.com',
+    'rp': 'esonline.tk',
     'local': 'localhost:3030',
-    'srv': 'local'
+    'srv': 'fun'
 }
 
 const fnames = ['Мику'];
@@ -984,7 +984,7 @@ class CharacterChooser {
                 switchTo = config.rp;
             }
             switchBt.onclick = function () {
-                location.href = 'http://' + switchTo;
+                location.href = 'http://www.' + switchTo;
             }
         }
     }
