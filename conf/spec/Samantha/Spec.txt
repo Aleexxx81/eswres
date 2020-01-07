@@ -18,13 +18,13 @@ bodies[2]
   accessories[]
 bodies[3]
   name = Лео
-  file = /modsprites/bodes/BoxLeo2.png
+  file = /modsprites/boxes/BoxLeo2.png
   emotions[] = /modsprites/SS/leo/idle2.png,/modsprites/SS/leo/scared2.png,/modsprites/SS/leo/smile2.png,/modsprites/SS/leo/surp2.png,/modsprites/SS/leo/unsure2.png
   clothes[] = /modsprites/SS/leo/leo2.png,/modsprites/SS/leo/leo2h.png
   accessories[]
 bodies[4]
   name = Лео
-  file = /modsprites/bodes/BoxLeo3.png
+  file = /modsprites/boxes/BoxLeo3.png
   emotions[] = /modsprites/SS/leo/normal3.png,/modsprites/SS/leo/happy3.png,/modsprites/SS/leo/scared3.png,/modsprites/SS/leo/smile3.png
   clothes[] = /modsprites/SS/leo/leo3.png,/modsprites/SS/leo/leo3h.png
   accessories[]
