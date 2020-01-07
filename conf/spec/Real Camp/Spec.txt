@@ -24,14 +24,14 @@ bodies[3]
   accessories[]
 bodies[4]
   name = Надя
-  file = /modsprites/RC/hp/rcn13.png
-  emotions[] = /modsprites/RC/hp/rcn2.png,/modsprites/RC/hp/rcn4.png,/modsprites/RC/hp/rcn6.png,/modsprites/RC/hp/rcn8.png,/modsprites/RC/hp/rcn11.png,/modsprites/RC/hp/rcn12.png,/modsprites/RC/hp/rcn13.png,/modsprites/RC/hp/rcn15.png,/modsprites/RC/hp/rcn16.png
+  file = /modsprites/boxes/BoxNadya1.png
+  emotions[] = /modsprites/RC/hp/rcn13.png,/modsprites/RC/hp/rcn2.png,/modsprites/RC/hp/rcn4.png,/modsprites/RC/hp/rcn6.png,/modsprites/RC/hp/rcn8.png,/modsprites/RC/hp/rcn11.png,/modsprites/RC/hp/rcn12.png,/modsprites/RC/hp/rcn13.png,/modsprites/RC/hp/rcn15.png,/modsprites/RC/hp/rcn16.png
   clothes[]
   accessories[]
 bodies[5]
   name = Надя
-  file = /modsprites/RC/hp/rcn18.png
-  emotions[] = /modsprites/RC/hp/rcn1.png,/modsprites/RC/hp/rcn3.png,/modsprites/RC/hp/rcn5.png,/modsprites/RC/hp/rcn7.png,/modsprites/RC/hp/rcn9.png,/modsprites/RC/hp/rcn10.png,/modsprites/RC/hp/rcn14.png,/modsprites/RC/hp/rcn17.png,/modsprites/RC/hp/rcn18.png
+  file = /modsprites/boxes/BoxNadya2.png
+  emotions[] = /modsprites/RC/hp/rcn18.png,/modsprites/RC/hp/rcn1.png,/modsprites/RC/hp/rcn3.png,/modsprites/RC/hp/rcn5.png,/modsprites/RC/hp/rcn7.png,/modsprites/RC/hp/rcn9.png,/modsprites/RC/hp/rcn10.png,/modsprites/RC/hp/rcn14.png,/modsprites/RC/hp/rcn17.png,/modsprites/RC/hp/rcn18.png
   clothes[]
   accessories[]
 bodies[6]
