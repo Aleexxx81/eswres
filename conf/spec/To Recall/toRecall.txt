@@ -1,13 +1,13 @@
 bodies[0]
   name = Миша
   file = /modsprites/TR/ms/ms_1_normal.png
-  emotions[] = /modsprites/TR/ms/ms_1_angry.png,/modsprites/TR/ms/ms_1_glass.png,/modsprites/TR/ms/ms_1_smile.png,/modsprites/TR/ms/ms_1_smile2.png,/modsprites/TR/ms/ms_1_surprise.png,/modsprites/TR/ms/ms_1_think.png
+  emotions[] = /modsprites/TR/ms/ms_1_normal.png,/modsprites/TR/ms/ms_1_angry.png,/modsprites/TR/ms/ms_1_glass.png,/modsprites/TR/ms/ms_1_smile.png,/modsprites/TR/ms/ms_1_smile2.png,/modsprites/TR/ms/ms_1_surprise.png,/modsprites/TR/ms/ms_1_think.png
   clothes[]
   accessories[]
 bodies[1]
   name = Миша
   file = /modsprites/TR/ms/ms_2_normal2.png
-  emotions[] = /modsprites/TR/ms/ms_2_angry2.png,/modsprites/TR/ms/ms_2_smile3.png,/modsprites/TR/ms/ms_2_smile4.png,/modsprites/TR/ms/ms_2_surprise2.png,/modsprites/TR/ms/ms_2_think2.png
+  emotions[] = /modsprites/TR/ms/ms_2_normal2.png,/modsprites/TR/ms/ms_2_angry2.png,/modsprites/TR/ms/ms_2_smile3.png,/modsprites/TR/ms/ms_2_smile4.png,/modsprites/TR/ms/ms_2_surprise2.png,/modsprites/TR/ms/ms_2_think2.png
   clothes[]
   accessories[]
 bodies[2]
@@ -31,28 +31,28 @@ bodies[4]
 bodies[5]
   name = Юля
   file = /modsprites/TR/nuv/nuv_1_normal.png
-  emotions[] = /modsprites/TR/nuv/nuv_1_happy.png,/modsprites/TR/nuv/nuv_1_smile.png,/modsprites/TR/nuv/nuv_1_surprise.png
+  emotions[] = /modsprites/TR/nuv/nuv_1_normal.png,/modsprites/TR/nuv/nuv_1_happy.png,/modsprites/TR/nuv/nuv_1_smile.png,/modsprites/TR/nuv/nuv_1_surprise.png
   clothes[]
   accessories[]
   skip = true
 bodies[6]
   name = Юля
   file = /modsprites/TR/nuv/nuv_2_smile2.png
-  emotions[] = /modsprites/TR/nuv/nuv_2_upset.png
+  emotions[] = /modsprites/TR/nuv/nuv_2_smile2.png,/modsprites/TR/nuv/nuv_2_upset.png
   clothes[]
   accessories[]
   skip = true
 bodies[7]
   name = Юля
   file = /modsprites/TR/nuv/nuv_3_normal.png
-  emotions[] = /modsprites/TR/nuv/nuv_3_happy.png,/modsprites/TR/nuv/nuv_3_smile.png,/modsprites/TR/nuv/nuv_3_surprise.png
+  emotions[] = /modsprites/TR/nuv/nuv_3_normal.png,/modsprites/TR/nuv/nuv_3_happy.png,/modsprites/TR/nuv/nuv_3_smile.png,/modsprites/TR/nuv/nuv_3_surprise.png
   clothes[]
   accessories[]
   skip = true
 bodies[8]
   name = Юля
   file = /modsprites/TR/nuv/nuv_4_smile2.png
-  emotions[] = /modsprites/TR/nuv/nuv_4_upset.png
+  emotions[] = /modsprites/TR/nuv/nuv_4_smile2.png,/modsprites/TR/nuv/nuv_4_upset.png
   clothes[]
   accessories[]
   skip = true
