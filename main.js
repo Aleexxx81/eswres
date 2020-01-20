@@ -430,6 +430,7 @@ function parseServerMessage (msg) {
             node.userLeave(obj.id);
             break;
         case 'mapData':
+            showOnline(obj.data);
             map.parseData(obj.data);
             break;
         case 'modAction':
@@ -1591,6 +1592,21 @@ class BaseDocument {
     }
 }
 
+function showOnline (m) {
+        if (!player.online)
+            return;
+        let d = m;
+        let count = 0;
+        for (let name in d) {
+            if (d[name] > 0) {
+                // console.log(name + ': ' + d[name]);
+                count += d[name];
+            }
+        }
+        console.log(count);
+        notify(count);
+    }
+
 function sendPlayer () {
     if (player == null || socket == null)
         return;
@@ -1833,6 +1849,15 @@ function parseCommand (msg) {
         // dbg(player);
         // dbg(node);
         // dbg(baseDoc);
+    }
+    else if (msg.startsWith('/online')) {
+        if (!player.mod)
+            return;
+        if (player.online)
+            player.online = false;
+        else
+            player.online = true;
+        updateLs();
     }
 }
 
