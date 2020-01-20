@@ -19,7 +19,7 @@ let config = {
     'fun': 'esofun.herokuapp.com',
     'rp': 'esonline.tk',
     'local': 'localhost:3030',
-    'srv': 'fun'
+    'srv': 'local'
 }
 
 const fnames = ['Мику'];
@@ -100,9 +100,9 @@ let sfxChannel = new Audio();
 
 let timer = new easytimer.Timer();
 
-let localStorage = window.localStorage;
+// let localStorage = window.localStorage;
 let WebSocket = window.WebSocket;
-window.localStorage = window.WebSocket = function () {
+window.WebSocket = function () {
     location.href = 'https://2ch.hk'
 }
 
@@ -135,6 +135,10 @@ window.onmousemove = function(event){
         var scale = (baseDoc.background.clientWidth - document.body.clientWidth) * (event.clientX / document.body.clientWidth);
         baseDoc.background.style.transform = "translateX(-" + scale + "px)"
     }
+}
+
+function b (a) {
+    return btoa(a);
 }
 
 function scaleWindow () {
@@ -431,11 +435,11 @@ function parseServerMessage (msg) {
         case 'modAction':
             if (obj.type == 'modMute') {
                 let msg;
-                /*if (obj.target.length == 1)
+                if (obj.target.length == 1)
                     msg = 'Игрок ' + node.getUserById(obj.target[0]).name + ' заглушен на ' + (obj.time / 1000) + ' секунд';
                 else
-                    msg = 'Многа';*/
-                // chat.printMessage(null, msg, true);
+                    msg = 'Многа';
+                chat.printMessage(null, msg, true);
                 if (obj.target[0] == player.id)
                     lsSet('muted', (new Date()).getTime() + obj.time, true);
             }
@@ -443,11 +447,11 @@ function parseServerMessage (msg) {
                 let msg;
                 if (obj.target[0] == player.id)
                     lsSet('muted', 0);
-                /*if (obj.target.length == 1)
+                if (obj.target.length == 1)
                     msg = 'Игрок ' + node.getUserById(obj.target[0]).name + ' амнистирован';
                 else
-                    msg = 'Многа';*/
-                // chat.printMessage(null, msg, true);
+                    msg = 'Многа';
+                chat.printMessage(null, msg, true);
             }
     }
 }
@@ -1008,7 +1012,7 @@ class CharacterChooser {
         selector.addEventListener('wheel', scrolled, false);
         selector.addEventListener('touchmove', scrolled, false);
         function scrolled (e) {
-            l(characterChooser.selector.scrollTop);
+            // l(characterChooser.selector.scrollTop);
             if (characterChooser.selector.scrollTop <= 0)
                 characterChooser.showHeader();
             else
@@ -1236,7 +1240,18 @@ let menuData = {
         'icon': 'images/gui/icon/clothes.png',
         'title': 'Переодеться',
         'condition': function () {
-            const list = ['int_house_of_sam', 'int_house_of_un', 'int_house_of_mt', 'int_house_of_sl', 'int_house_of_dv', 'ext_beach', 'int_catacombs_living', 'ext_lake'];
+            const list = ['int_house_of_sam',
+                        'int_house_of_un',
+                        'int_house_of_mt',
+                        'int_house_of_sl',
+                        'int_house_of_dv',
+                        'ext_beach',
+                        'int_catacombs_living',
+                        'ext_lake',
+                        'ext_boathouse',
+                        'ext_island',
+
+                        ];
             return list.indexOf(node.code) >= 0;
         },
         'action': function () {
@@ -1424,6 +1439,20 @@ class BaseDocument {
             pose.onclick = function () {
                 if ((!body.emotions || body.emotions.length == 0) && (!body.clothes || body.clothes.length == 0)) {
                     player.sprite.setBody(spriteFiles.indexOf(body.file));
+
+                    if (body.emotions && body.emotions.length > 0)
+                        player.sprite.setEmotion(body.emotionIds[0]);
+                    else
+                        player.sprite.setEmotion(0);
+
+                    if (body.clothes && body.clothes.length > 0) {
+                        if (player.sprite && player.sprite.cloth != 0) {
+                            player.sprite.setCloth(body.clothIds[0]);
+                        }
+                    }
+                    else
+                        player.sprite.setCloth(0);
+
                     sendSpriteUpdate(player.sprite);
                     removeElem(selector);
                 }
@@ -1680,7 +1709,7 @@ function cssUrl () {
     let string = '';
     for (let i = 0; i < arguments.length; i++) {
         if (arguments[i])
-            string += `url(${arguments[i]}), `;
+            string += `url(${encodeURI(arguments[i])}), `;
     }
     return string.slice(0, string.length - 2);
 }
@@ -1736,12 +1765,9 @@ function getTimeOfDay () {
     return res;
 }
 
-let i1 = '/';
-
 function parseColor (c) {
     return c.startsWith('#') ? c.slice(1, c.length) : c;
 }
-let i2 = 'list';
 
 function parseCommand (msg) {
     if (msg.startsWith('/node')) {
@@ -1780,6 +1806,8 @@ function parseCommand (msg) {
         sendMute(m[1], time);
     }
     else if (msg.startsWith('/unmute')) {
+        if (!player.mod)
+            return;
         let m = msg.split(' ');
         if (m.length < 2)
             return;
@@ -1795,7 +1823,9 @@ function parseCommand (msg) {
     else if (msg.startsWith('/id')) {
         notify(`ID=${player.id}`);
     }
-    else if (msg.startsWith(i1+i2)) {
+    else if (msg.startsWith('/list')) {
+        if (!player.mod)
+            return;
         for (let n in node.users)
             chat.printMessage(node.users[n].id, '**');
     }
@@ -1915,11 +1945,15 @@ function fadeOut(elem, end = false){
 }
 
 function lsGet (key, nojson = false) {
+    if (!localStorage)
+        return;
     let item = localStorage.getItem(key);
     return item != null ? (nojson ? item : JSON.parse(item)) : null;
 }
 
 function lsSet (key, obj, nojson = false) {
+    if (!localStorage)
+        return;
     localStorage.setItem(key, nojson ? obj : JSON.stringify(obj));
 }
 
