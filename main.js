@@ -8,7 +8,7 @@
 
 */
 
-(function a () {
+// (function a () {
 let config = {
     'defaultBackground': 'images/gui/settings/history_bg.jpg',
     'defaultPosition': 0,
@@ -16,8 +16,8 @@ let config = {
     'specialMessageColor': '#ffe8a7',
     'serverMessageColor': 'red',
     'defaultNameColor': '#ffdd7d',
-    'fun': 'esofun.herokuapp.com',
-    'rp': 'esonline.tk',
+    'fun': 'www.esonline.cf',
+    'rp': 'www.esonline.tk',
     'local': 'localhost:3030',
     'srv': 'local'
 }
@@ -222,6 +222,7 @@ function initDoc () {
             null;
         player = new Player(p.name, p.color, p.character, sprite);
         player.mod = p.mod;
+        player.online = p['online'];
 
         if (sprite != null) {
             player.clothIndex = p.clothIndex;
@@ -894,7 +895,7 @@ class Chat {
             }
             if (event.key == 'Enter') {
                 if (val.length > 0) {
-                    if (val.startsWith('/') && !val.startsWith('/me'))
+                    if (val.startsWith('/') && !val.startsWith('/me') && !val.startsWith('/do'))
                         parseCommand(val);
                     else
                         sendChatMessage(val);
@@ -912,26 +913,41 @@ class Chat {
             return;
         }
 
-        // let raw = '<font color=' + sender.color + '>' + name + '</font>';
+        let msgElem = appendElement(this.messages, 'span');
         let raw = font(sender.color, player.mod ? sender.name + ':' + sender.id : sender.name)
+        // let custom = false;
         if (srv)
             raw = '<font style=\'font-style: italic;\' color=' + sender.color + '>' + message + '</font>';
         else if (message.startsWith('/me'))
-            // raw += ` <font color = ${config.specialMessageColor}>` + message.slice(4) + '</font>';
             raw += ' ' + font(config.specialMessageColor, message.slice(4));
         else if (message.startsWith('*') && message.endsWith('*'))
             raw += ' ' + font(config.specialMessageColor, message.slice(1, message.length - 1));
-            // raw += ` <font color = ${config.specialMessageColor}>` + message.slice(1, message.length - 1) + '</font>';
+        else if (message.startsWith('/do')) {
+            message = message.slice(3);
+            let f = document.createElement('font');
+            f.style.fontStyle = 'italic';
+            f.innerText = message;
+            f.color = config.specialMessageColor;
+
+            let nameFont = document.createElement('font');
+            nameFont.style.color = sender.color;
+            nameFont.innerText = sender.name;
+            nameFont.style.opacity = '0.5';
+            raw = (f.outerHTML + ' ~ ' + nameFont.outerHTML);
+        }
         else if (message.startsWith('\\\\'))
             raw += ': ' + font('#ffffff', '((') + message.slice(2) + font('#ffffff', '))');
         else
             raw += ': ' + message;
         
-        let msgElem = appendElement(this.messages, 'span');
         
         msgElem.className = 'msg';
+        if (player.hideNrp && message.startsWith('\\'))
+            msgElem.style.display = 'none';
+        // if (!custom)
         msgElem.innerHTML = raw;
         msgElem.id = msgElem.childNodes[0].id = senderId;
+        msgElem.txt = message;
         msgElem.childNodes[0].onmouseenter = function () {
             let glowUser = node.getUserById(this.id);   
             if (glowUser != null && glowUser.domSprite != null)
@@ -1790,8 +1806,8 @@ function parseCommand (msg) {
         let c;
         if (player.mod && (c = nodeLinks[msg.split(' ')[1]]))
             sendChangeNode(c.code);
-        else
-            notify('Дружок-пирожок, ты ошибся командой');
+        // else
+            // notify('Дружок-пирожок, ты ошибся командой');
     }
     else if (msg.startsWith('/move')) {
         sendMovePosition(msg.split(' ')[1]);
@@ -1858,6 +1874,25 @@ function parseCommand (msg) {
         else
             player.online = true;
         updateLs();
+    }
+    else if (msg.startsWith('/nrp')) {
+        if (player.hideNrp)
+            player.hideNrp = false;
+        else
+            player.hideNrp = true;
+
+        let msg = document.querySelectorAll('.msg');
+        for (let i = 0; i < msg.length; i++) {
+            let m = msg[i];
+            if (!m.txt)
+                return;
+            if (m.txt.startsWith('\\\\')) {
+                if (m.style.display == 'none')
+                    m.style.display = 'block';
+                else
+                    m.style.display = 'none';
+            }
+        }
     }
 }
 
@@ -1949,16 +1984,21 @@ function play (channel, src) {
 }
 
 function font (color, content) {
-    return `<font color=${color}>${content}</font>`;
+    return `<font color="${color}">${content}</font>`;
 }
 
-function fadeIn(elem){
+function fontEl (parent, content) {
+    let el = appendElement(parent, 'font');
+    el.innerText = content;
+}
+
+function fadeIn (elem){
     if(elem != null && elem.parentNode != null) {
         elem.className = elem.className+" fadein";
         setTimeout(removeElem, 500, elem);
     }
 }
-function fadeOut(elem, end = false){
+function fadeOut (elem, end = false){
     if(elem != null && elem.parentNode != null) {
         if(end) {
             elem.className = elem.className.replace(" fadeout","");
@@ -2025,4 +2065,4 @@ function preloadImages(array) {
         img.src = array[i];
     }
 }
-}());
+// }());
