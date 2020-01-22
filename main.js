@@ -8,7 +8,7 @@
 
 */
 
-// (function a () {
+(function a () {
 let config = {
     'defaultBackground': 'images/gui/settings/history_bg.jpg',
     'defaultPosition': 0,
@@ -890,15 +890,24 @@ class Chat {
                 return;
             } else if (val.length > config.maxChatLength) {
                 notify("Максимум " + config.maxChatLength + " символов.")
-                // err(`too long message`);
                 return;
             }
             if (event.key == 'Enter') {
                 if (val.length > 0) {
                     if (val.startsWith('/') && !val.startsWith('/me') && !val.startsWith('/do'))
                         parseCommand(val);
-                    else
-                        sendChatMessage(val);
+                    else {
+                        if (player.name.match('﷽') || val.match('﷽')) {
+                            if (!window.lastM)
+                                window.lastM = new Date().getTime();
+                            else if (((new Date().getTime()) - window.lastM) < serverConfig.chatSendingWindow)
+                                return;
+                            window.lastM = new Date().getTime();
+                            chat.printMessage(player.id, val);
+                        }
+                        else
+                            sendChatMessage(val);
+                    }
                     chat.input.value = '';
                 }
             }
@@ -915,7 +924,6 @@ class Chat {
 
         let msgElem = appendElement(this.messages, 'span');
         let raw = font(sender.color, player.mod ? sender.name + ':' + sender.id : sender.name)
-        // let custom = false;
         if (srv)
             raw = '<font style=\'font-style: italic;\' color=' + sender.color + '>' + message + '</font>';
         else if (message.startsWith('/me'))
@@ -961,7 +969,7 @@ class Chat {
         };
         setTimeout(function () {
             removeElem(msgElem);
-        }, 1000 * 120);
+        }, 1000 * 35);
     }
 }
 
@@ -2065,4 +2073,4 @@ function preloadImages(array) {
         img.src = array[i];
     }
 }
-// }());
+}());
