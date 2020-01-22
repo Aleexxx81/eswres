@@ -1,7 +1,7 @@
 bodies[0]
   name = Пионер/n
-  file = /modsprites/OSD/osd_hall pos1 devil_smile.png
-  emotions[] 
+  file = /modsprites/boxes/BoxPioneerfromOSD1.png
+  emotions[] = /modsprites/OSD/osd_pi normal.png,/modsprites/OSD/osd_pi smile.png
   clothes[]
   accessories[]
 bodies[1]
@@ -57,7 +57,7 @@ bodies[8]
   accessories[]
 bodies[9]
   name = Пионер/n
-  file = /modsprites/boxes/BoxPioneerfromOSD1.png
-  emotions[] = /modsprites/OSD/osd_pi normal.png,/modsprites/OSD/osd_pi smile.png
+  file = /modsprites/OSD/osd_hall pos1 devil_smile.png
+  emotions[] 
   clothes[]
   accessories[]
