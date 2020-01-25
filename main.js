@@ -369,6 +369,8 @@ function parseServerMessage (msg) {
         return;
     }
     else {
+        if (serverConfig.encodeMessages)
+            data = atobUtf(data);
         try {
             obj = JSON.parse(data);
         } catch (e) {
@@ -1864,7 +1866,6 @@ function parseCommand (msg) {
         notify(`ID=${player.id}`);
     }
     else if (msg.startsWith('/list')) {
-        if (!player.mod)
             return;
         for (let n in node.users)
             chat.printMessage(node.users[n].id, '**');
@@ -2049,6 +2050,12 @@ function isTouch () {
     
     var query = ['(', prefixes.join('touch-enabled),('), 'heartz', ')'].join('');
     return mq(query);
+}
+
+function atobUtf (str) {
+    return decodeURIComponent(atob(str).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
 }
 
 function preloadImages(array) {
