@@ -103,7 +103,7 @@ bodies[16]
 bodies[17]
   name = Юри
   file = /modsprites/DDLK/yuri/yuri_pos_embarrassed2.png
-  emotions[] = /modsprites/DDLK/yuri/yuri_pos_embarrassed2.png,/modsprites/DDLK/yuri/yuri_pos_embarrased.png
+  emotions[] = /modsprites/DDLK/yuri/yuri_pos_embarrassed2.png,/modsprites/DDLK/yuri/yuri_pos_embarrassed.png
   clothes[]
   accessories[]
 bodies[18]
