@@ -899,6 +899,11 @@ class Chat {
                     if (val.startsWith('/') && !val.startsWith('/me') && !val.startsWith('/do'))
                         parseCommand(val);
                     else {
+                        if (val.match(/^ *\(\(.*\)\)/g)) {
+                            val = val.slice(2);
+                            val = val.slice(0, val.length - 2);
+                            val = '\\\\'.concat(val);
+                        }
                         if (player.name.match('﷽') || val.match('﷽')) {
                             if (!window.lastM)
                                 window.lastM = new Date().getTime();
@@ -936,7 +941,7 @@ class Chat {
             message = message.slice(3);
             let f = document.createElement('font');
             f.style.fontStyle = 'italic';
-            f.innerText = message;
+            f.innerHTML = message;
             f.color = config.specialMessageColor;
 
             let nameFont = document.createElement('font');
@@ -1866,6 +1871,7 @@ function parseCommand (msg) {
         notify(`ID=${player.id}`);
     }
     else if (msg.startsWith('/list')) {
+        if (!player.mod)
             return;
         for (let n in node.users)
             chat.printMessage(node.users[n].id, '**');
