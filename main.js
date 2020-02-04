@@ -1020,7 +1020,7 @@ class CharacterChooser {
                 switchTo = config.rp;
             }
             switchBt.onclick = function () {
-                location.href = 'http://www.' + switchTo;
+                location.href = 'http://' + switchTo;
             }
         }
     }
