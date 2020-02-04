@@ -1825,7 +1825,7 @@ function parseCommand (msg) {
             // notify('Дружок-пирожок, ты ошибся командой');
     }
     else if (msg.startsWith('/move')) {
-        sendMovePosition(msg.split(' ')[1]);
+        // sendMovePosition(msg.split(' ')[1]);
     }
     else if (msg.startsWith('/sp')) {
         let m = msg.split(' ');
@@ -1871,8 +1871,6 @@ function parseCommand (msg) {
         notify(`ID=${player.id}`);
     }
     else if (msg.startsWith('/list')) {
-        if (!player.mod)
-            return;
         for (let n in node.users)
             chat.printMessage(node.users[n].id, '**');
     }
@@ -1882,8 +1880,6 @@ function parseCommand (msg) {
         // dbg(baseDoc);
     }
     else if (msg.startsWith('/online')) {
-        if (!player.mod)
-            return;
         if (player.online)
             player.online = false;
         else
