@@ -102,25 +102,25 @@ bodies[16]
   accessories[]
 bodies[17]
   name = Юри
-  file = /modsprites/DDLK/yuri/yuri_pos_embarrassed2.png
-  emotions[] = /modsprites/DDLK/yuri/yuri_pos_embarrassed2.png,/modsprites/DDLK/yuri/yuri_pos_embarrassed.png
-  clothes[]
-  accessories[]
-bodies[18]
-  name = Юри
   file = /modsprites/DDLK/yuri/yuri_pos1_normal.png
   emotions[] =  /modsprites/DDLK/yuri/yuri_pos1_normal.png,/modsprites/DDLK/yuri/yuri_pos1_complain.png,/modsprites/DDLK/yuri/yuri_pos1_doubts.png,/modsprites/DDLK/yuri/yuri_pos1_smile.png,/modsprites/DDLK/yuri/yuri_pos1_surprised.png
   clothes[]
   accessories[]
-bodies[19]
+bodies[18]
   name = Юри
   file = /modsprites/boxes/BoxYuri1.png
   emotions[] = /modsprites/DDLK/yuri/yuri_pos2_smile.png,/modsprites/DDLK/yuri/yuri_pos3_reading.png
   clothes[]
   accessories[]
-bodies[20]
+bodies[19]
   name = Юри
   file = /modsprites/DDLK/yuri/yuri_swim_angry.png
   emotions[]
+  clothes[]
+  accessories[]
+bodies[20]
+  name = Юри
+  file = /modsprites/DDLK/yuri/yuri_pos_embarrassed2.png
+  emotions[] = /modsprites/DDLK/yuri/yuri_pos_embarrassed2.png,/modsprites/DDLK/yuri/yuri_pos_embarrassed.png
   clothes[]
   accessories[]
