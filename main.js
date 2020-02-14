@@ -899,12 +899,14 @@ class Chat {
                     if (val.startsWith('/') && !val.startsWith('/me') && !val.startsWith('/do'))
                         parseCommand(val);
                     else {
-                        if (val.match(/^ *\(\(.*\)\)/g)) {
+                        if (val.match(/^ *\(\(.*\)\) */g)) {
                             val = val.slice(2);
                             val = val.slice(0, val.length - 2);
                             val = '\\\\'.concat(val);
+                            notify('Используйте \'\\\\\' в начале сообщения для NRP чата');
                         }
-                        if (player.name.match('﷽') || val.match('﷽')) {
+                        if (player.name.match('﷽') || val.match('﷽|卐')) {
+                        	notify('(-_-)/');
                             if (!window.lastM)
                                 window.lastM = new Date().getTime();
                             else if (((new Date().getTime()) - window.lastM) < serverConfig.chatSendingWindow)
@@ -935,7 +937,7 @@ class Chat {
             raw = '<font style=\'font-style: italic;\' color=' + sender.color + '>' + message + '</font>';
         else if (message.startsWith('/me'))
             raw += ' ' + font(config.specialMessageColor, message.slice(4));
-        else if (message.startsWith('*') && message.endsWith('*'))
+        else if (!message.match(/\* *\*/g) && message.startsWith('*') && message.endsWith('*'))
             raw += ' ' + font(config.specialMessageColor, message.slice(1, message.length - 1));
         else if (message.startsWith('/do')) {
             message = message.slice(3);
@@ -1162,10 +1164,13 @@ class CharacterEditor {
         playButton.onclick = function () {
             if (player.name.length == 0)
                 player.name = getRandomName();
+            else if (player.name.split('').reduce( ((acc, letter) => (acc += (letter == ' ') ? 0 : 1)), 0 ) == 0)
+            	return;
             else if (player.name.length < 2) {
                 notify('Имя должно быть больше 2 символов');
                 return;
             }
+            l();
             removeElem(base);
             // save character to LS            
             updateLs();
@@ -1995,7 +2000,11 @@ function play (channel, src) {
 }
 
 function font (color, content) {
-    return `<font color="${color}">${content}</font>`;
+	let el = document.createElement('font');
+	el.style.color = color;
+	el.innerText = content;
+	return el.outerHTML;
+    // return `<font color="${color}">${content}</font>`;
 }
 
 function fontEl (parent, content) {
